@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'pundit'
 gem 'thin'
 group :development do
+  gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
