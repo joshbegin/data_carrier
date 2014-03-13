@@ -15,12 +15,16 @@ gem 'devise'
 gem 'haml-rails'
 gem 'pundit'
 gem 'thin'
-group :development do
+group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'guard-bundler'
   gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'spring-commands-rspec'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
@@ -28,4 +32,8 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+end
+group :test do
+  gem 'minitest'
+  gem 'shoulda-matchers'
 end

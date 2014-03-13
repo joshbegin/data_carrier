@@ -11,3 +11,9 @@
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         = render 'layouts/navigation_links'
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %em.navbar-text.small= "Signed in as #{current_user.name}"
+          %li= button_to 'Logout', destroy_user_session_path, :method=>'delete', class: "btn btn-default navbar-btn"
+        - else
+          %li= button_to 'Login', new_user_session_path, class: 'btn btn-default navbar-btn'
