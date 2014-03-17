@@ -24,6 +24,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'spring-commands-rspec'
   gem 'factory_girl_rails'
+  gem 'capybara'
   gem 'faker'
   gem 'html2haml'
   gem 'hub', :require=>nil
