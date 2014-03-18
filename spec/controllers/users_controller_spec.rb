@@ -14,6 +14,11 @@ describe UsersController do
         get 'index'
         expect(response).to_not be_success
       end
+
+      it "should not be able to change roles"
+
+      it "should not be able to delete users"
+
     end
 
     describe "Admin Users" do
@@ -23,6 +28,11 @@ describe UsersController do
         get 'index'
         expect(response).to be_success
       end
+
+      it "should not be able to change their own role"
+
+      it "should not be able to delete themselves"
+
     end
   end
 end
