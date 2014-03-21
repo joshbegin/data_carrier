@@ -2,8 +2,9 @@
   .row
     %h3 Users
     .column
-      %table.table
-        %tbody
-          - @users.each do |user|
-            %tr
-              = render user
+      .table-responsive
+        %table.table.table-hover.table-condensed
+          %tbody
+            - @users.each do |user|
+              %tr
+                = render user

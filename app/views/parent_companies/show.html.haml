@@ -1,0 +1,13 @@
+- provide(:title, "Parent Company Details")
+.container
+  .row
+  %h3= "#{@parent_company.name} Details"
+  .row
+    .col-md-.well
+      %p
+        %b Name:
+        = @parent_company.name
+      %p
+        %b Additional Name:
+        = @parent_company.additional_name
+      = link_to 'Edit', edit_parent_company_path(@parent_company), class: "btn btn-default" if current_user.admin?

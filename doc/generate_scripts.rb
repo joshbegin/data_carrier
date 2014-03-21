@@ -1,0 +1,1 @@
+rails g scaffold ParentCompany name:uniq additional_name:uniq

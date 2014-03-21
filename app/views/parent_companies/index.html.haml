@@ -1,0 +1,20 @@
+- provide(:title, "Parent Companies")
+.container
+  .row
+    %h3 Parent Companies
+    %table.table.table-striped.table-hover.table-condensed
+      %thead
+        %tr
+          %th Name
+          %th Additional Name
+          %th
+          %th
+      %tbody
+        - @parent_companies.each do |parent_company|
+          %tr
+            %td= link_to "#{parent_company.name}", parent_company
+            %td= parent_company.additional_name
+            %td= link_to "Edit", edit_parent_company_path(parent_company), class: "btn btn-small" if current_user.admin?
+            %td= link_to "Delete", parent_company, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-small btn-danger" if current_user.admin?
+    %br/
+    = link_to "Add Parent Company", new_parent_company_path, class: "btn btn-primary" if current_user.admin?

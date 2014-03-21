@@ -1,0 +1,8 @@
+- provide(:title, "New Parent Company")
+.container
+  .row
+    %h3= "New Parent Company"
+  .row
+    .col-sm-7
+      = render 'form'
+      = link_to 'Back', parent_companies_path
