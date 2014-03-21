@@ -1,7 +1,9 @@
 .container
   .row
     %h3 Home
-    - if !current_user.nil? and current_user.admin?
-      - @users.each do |user|
-        %p
-          User: #{link_to user.email, user} Role: #{user.role unless user.role.nil?}
+    .jumbotron
+      - if current_user.nil?
+        %p Please sign up or sign in to access Carrier Data
+        = button_to 'Login', user_session_path, method: 'get', class: 'btn btn-primary btn-lg'
+      - else
+        %p Please use the Menu bar above to access content
