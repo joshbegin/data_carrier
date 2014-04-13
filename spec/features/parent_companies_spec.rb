@@ -20,28 +20,28 @@ describe "ParentCompanies" do
     it "should be able to access Parent Companies (index) page" do
       visit parent_companies_path
 
-      page.should have_selector('h3',    text: 'Parent Companies')
+      expect(page).to have_selector('h3',    text: 'Parent Companies')
     end
 
     it "should be able to view show pages" do
       visit parent_company_path(@parent_company)
 
-      page.should have_selector('h3',     text: "#{@parent_company.name} Details")
+      expect(page).to have_selector('h3',     text: "#{@parent_company.name} Details")
     end
 
     it "should be able to edit Parent Companies" do
       visit edit_parent_company_path(@parent_company)
 
-      page.should have_selector('h3',     text: "Edit #{@parent_company.name}")
+      expect(page).to have_selector('h3',     text: "Edit #{@parent_company.name}")
     end
 
     it "should be able to add Parent Companies" do
       visit new_parent_company_path
 
-      page.should have_selector('h3',     text: 'New Parent Company')
+      expect(page).to have_selector('h3',     text: 'New Parent Company')
     end
 
-    it { should have_link('Parent Companies', href: parent_companies_path) }
+    it { is_expected.to have_link('Parent Companies', href: parent_companies_path) }
 
     # it "should display the correct child carriers" do
     #   visit parent_company_path(parent_company)
@@ -60,25 +60,25 @@ describe "ParentCompanies" do
 
     it "should be able to access Parent Companies (index) page" do
       visit parent_companies_path
-      page.should have_selector('h3',    text: 'Parent Companies')
+      expect(page).to have_selector('h3',    text: 'Parent Companies')
     end
 
     it "should be able to view show pages" do
       visit parent_company_path(@parent_company)
-      page.should have_selector('h3',     text: "#{@parent_company.name}")
+      expect(page).to have_selector('h3',     text: "#{@parent_company.name}")
     end
 
     it "should not be able to edit Parent Companies" do
       visit edit_parent_company_path(@parent_company)
-      page.should have_selector('h3',     text: 'Parent Companies')
+      expect(page).to have_selector('h3',     text: 'Parent Companies')
     end
 
     it "should not be able to add Parent Companies" do
       visit new_parent_company_path
-      page.should have_selector('h3',     text: 'Parent Companies')
+      expect(page).to have_selector('h3',     text: 'Parent Companies')
     end
 
-    it { should have_link('Parent Companies', href: parent_companies_path) }
+    it { is_expected.to have_link('Parent Companies', href: parent_companies_path) }
   end
 
   describe "when not signed in" do
@@ -88,22 +88,22 @@ describe "ParentCompanies" do
 
     it "should not be able to access Parent Companies (index) page" do
       visit parent_companies_path
-      page.should have_selector('h3',    text: 'Log in')
-      page.should have_content('You need to sign in or sign up before continuing.')
+      expect(page).to have_selector('h3',    text: 'Log in')
+      expect(page).to have_content('You need to sign in or sign up before continuing.')
     end
 
     it "should not be able to view show pages" do
       visit parent_company_path(@parent_company)
-      page.should have_selector('h3',    text: 'Log in')
-      page.should have_content('You need to sign in or sign up before continuing.')
+      expect(page).to have_selector('h3',    text: 'Log in')
+      expect(page).to have_content('You need to sign in or sign up before continuing.')
     end
 
     it "should not be able to edit Parent Companies" do
       visit edit_parent_company_path(@parent_company)
-      page.should have_selector('h3',    text: 'Log in')
-      page.should have_content('You need to sign in or sign up before continuing.')
+      expect(page).to have_selector('h3',    text: 'Log in')
+      expect(page).to have_content('You need to sign in or sign up before continuing.')
     end
 
-    it { should_not have_link('Parent Companies', href: parent_companies_path) }
+    it { is_expected.not_to have_link('Parent Companies', href: parent_companies_path) }
   end
 end

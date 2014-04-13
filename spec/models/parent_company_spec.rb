@@ -9,10 +9,10 @@ describe ParentCompany do
     }
   end
 
-  it { should validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:name) }
 
   it do
     ParentCompany.create!(@attr)
-    should validate_uniqueness_of(:name)
+    is_expected.to validate_uniqueness_of(:name)
   end
 end

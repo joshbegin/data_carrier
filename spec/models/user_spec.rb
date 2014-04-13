@@ -15,24 +15,24 @@ describe User do
     User.create!(@attr)
   end
 
-  it { should validate_presence_of(:email) }
+  it { is_expected.to validate_presence_of(:email) }
 
-  it { should allow_value('user@foo.com', 'THE_USER@foo.bar.org', 'first.last@foo.jp').for(:email) }
+  it { is_expected.to allow_value('user@foo.com', 'THE_USER@foo.bar.org', 'first.last@foo.jp').for(:email) }
 
-  it { should_not allow_value('asdfjkl').for(:email) }
-  it { should_not allow_value('user@foo,com').for(:email) }
-  it { should_not allow_value('user_at_foo.org').for(:email) }
-  it { should_not allow_value('example.user@foo.').for(:email) }
+  it { is_expected.not_to allow_value('asdfjkl').for(:email) }
+  it { is_expected.not_to allow_value('user@foo,com').for(:email) }
+  it { is_expected.not_to allow_value('user_at_foo.org').for(:email) }
+  it { is_expected.not_to allow_value('example.user@foo.').for(:email) }
 
   it do
     User.create!(@attr)
-    should validate_uniqueness_of(:email)
+    is_expected.to validate_uniqueness_of(:email)
   end
 
   it "should reject email addresses identical up to case" do
     upcased_email = @attr[:email].upcase
     User.create!(@attr.merge(:email => upcased_email))
-    should validate_uniqueness_of(:email)
+    is_expected.to validate_uniqueness_of(:email)
   end
 
   describe "passwords" do
@@ -41,13 +41,13 @@ describe User do
       @user = User.new(@attr)
     end
 
-    it { should validate_presence_of(:password) }
+    it { is_expected.to validate_presence_of(:password) }
   end
 
   describe "password validations" do
 
-    it { should ensure_length_of(:password).is_at_least(8) }
-    it { should validate_confirmation_of(:password) }
+    it { is_expected.to ensure_length_of(:password).is_at_least(8) }
+    it { is_expected.to validate_confirmation_of(:password) }
   end
 
   describe "password encryption" do
