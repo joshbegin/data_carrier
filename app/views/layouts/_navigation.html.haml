@@ -18,5 +18,3 @@
           - else
             %em.navbar-text.small= "Signed in"
           %li= button_to 'Logout', destroy_user_session_path, :method=>'delete', class: "btn btn-primary navbar-btn"
-        - else
-          %li= button_to 'Login', user_session_path, method: 'get', class: 'btn btn-primary navbar-btn'

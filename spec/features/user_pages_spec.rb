@@ -1,8 +1,11 @@
 require 'spec_helper'
 
+describe "When not logged in"
+
 describe "All Users" do
   before :each do
     @user = FactoryGirl.create(:user)
+    @parent = FactoryGirl.create(:parent_company)
   end
 
   it "should be able to sign in" do

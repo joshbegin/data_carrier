@@ -1,5 +1,7 @@
 class ParentCompaniesController < ApplicationController
-  before_action :set_parent_company, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  before_action :set_parent_company, only: [:edit, :update, :destroy]
+  # after_action :verify_authorized
 
   # GET /parent_companies
   # GET /parent_companies.json
@@ -10,11 +12,16 @@ class ParentCompaniesController < ApplicationController
   # GET /parent_companies/1
   # GET /parent_companies/1.json
   def show
+    @parent_company = ParentCompany.find(params[:id])
   end
 
   # GET /parent_companies/new
   def new
-    @parent_company = ParentCompany.new
+    if current_user.admin?
+      @parent_company = ParentCompany.new
+    else
+      redirect_to parent_companies_path
+    end
   end
 
   # GET /parent_companies/1/edit
@@ -64,7 +71,11 @@ class ParentCompaniesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_parent_company
-      @parent_company = ParentCompany.find(params[:id])
+      if current_user.admin?
+        @parent_company = ParentCompany.find(params[:id])
+      else
+        redirect_to parent_companies_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
