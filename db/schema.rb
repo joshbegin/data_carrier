@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507014821) do
+ActiveRecord::Schema.define(version: 20140507015114) do
+
+  create_table "companies", force: true do |t|
+    t.integer  "parent_company"
+    t.integer  "company_type"
+    t.integer  "state"
+    t.string   "name"
+    t.string   "additional_name"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "address_line_3"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "url"
+    t.string   "naic_code"
+    t.string   "ai_carrier_code"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "company_types", force: true do |t|
     t.string   "name"

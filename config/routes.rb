@@ -1,4 +1,6 @@
 DataCarrier::Application.routes.draw do
+  resources :companies
+
   resources :parent_companies
 
   root :to => "home#index"
