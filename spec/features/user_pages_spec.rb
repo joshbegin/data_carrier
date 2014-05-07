@@ -51,6 +51,7 @@ describe "Admin Users" do
   before :each do
     @admin = FactoryGirl.create(:admin)
     signin(@admin)
+    @user = FactoryGirl.create(:user)
     visit users_path
   end
 

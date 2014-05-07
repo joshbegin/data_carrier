@@ -11,6 +11,9 @@ describe UsersController do
 
   describe "Non-Admin Users" do
     login_user
+    before :each do
+      @user1 = FactoryGirl.create(:user)
+    end
 
     it "should not get index" do
       get 'index'
@@ -19,7 +22,10 @@ describe UsersController do
 
     it "should not be able to change roles"
 
-    it "should not be able to delete users other than themselves"
+    it "should not be able to delete users other than themselves" do
+      @user2 = FactoryGirl.create(:user)
+      expect{ delete :destroy, id: @user2 }.to change(User,:count).by(0)
+    end
 
     it "should be able to delete themselves"
 
@@ -33,8 +39,26 @@ describe UsersController do
       expect(response).to be_success
     end
 
+    describe "DELETE #destroy" do
+      before :each do
+        @user1 = FactoryGirl.create(:user)
+      end
+
+      it "deletes the user" do
+        expect{ delete :destroy, id: @user1 }.to change(User,:count).by(-1)
+      end
+
+      it "redirects to users#index" do
+        delete :destroy, id: @user1
+        response.should redirect_to users_url
+      end
+    end
+
     it "should not be able to change their own role"
 
-    it "should not be able to delete themselves"
+    it "should not be able to delete themselves" do
+      @admin = User.first
+      expect{ delete :destroy, id: @admin }.to change(User,:count).by(0)
+    end
   end
 end

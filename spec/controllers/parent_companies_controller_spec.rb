@@ -56,6 +56,9 @@ describe ParentCompaniesController do
     end
 
     describe "DELETE #destroy" do
+      it "does not delete the parent company" do
+        expect{ delete :destroy, id: @pc1 }.to change(ParentCompany,:count).by(0)
+      end
     end
 
     describe "As Admin" do
@@ -68,12 +71,44 @@ describe ParentCompaniesController do
           expect(response.status).to eq(200)
         end
       end
+
+      describe "DELETE #destroy" do
+        it "deletes the parent company" do
+          expect{ delete :destroy, id: @pc1 }.to change(ParentCompany,:count).by(-1)
+        end
+
+        it "redirects to parent_companies#index" do
+          delete :destroy, id: @pc1
+          response.should redirect_to parent_companies_url
+        end
+      end
     end
 
   end
 
   describe "When not logged in" do
-    it "should not be able to access any actions"
+
+    describe "GET #index" do
+      it "should redirect to signin" do
+        get :index
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "GET #show" do
+      it "should redirect to signin" do
+        get :show, id: @pc1.id
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    describe "GET #edit" do
+      it "should redirect to signin" do
+        get :edit, id: @pc1.id
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
   end
 
 end
