@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320160146) do
+ActiveRecord::Schema.define(version: 20140507014438) do
 
   create_table "parent_companies", force: true do |t|
     t.string   "name"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20140320160146) do
 
   add_index "parent_companies", ["additional_name"], name: "index_parent_companies_on_additional_name", unique: true
   add_index "parent_companies", ["name"], name: "index_parent_companies_on_name", unique: true
+
+  create_table "states", force: true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
