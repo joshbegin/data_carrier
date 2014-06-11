@@ -1,0 +1,63 @@
+- provide(:title, "Company Details")
+.container
+  .row
+  %h3= "#{@company.name} Details"
+  .row
+    .col-md-5
+      .well
+        %dl.dl-horizontal
+          %dt
+            %b Name:
+          %dd= @company.name
+          %dt
+            %b Additional Name:
+          %dd= @company.additional_name
+          %dt
+            %b Company Type:
+          %dd= @company.company_type.name
+          %dt
+            %b Parent Company:
+          %dd= @company.parent_company.name
+    .col-md-5
+      .well
+        %dl.dl-horizontal
+          %dt
+            %b Address:
+            %dd
+              = @company.address_line_1
+              %br
+              = @company.address_line_2
+              %br
+              = @company.address_line_3
+              %br
+              = "#{@company.city}, #{@company.state.name} #{@company.zip}"
+          %dt
+            %b URL:
+          %dd= @company.url
+  .row
+    .col-md-5
+      .well
+        %dl.dl-horizontal
+          %dt
+            %b NAIC Code:
+          %dd= @company.naic_code
+          %dt
+            %b AI Carrier Code:
+          %dd= @company.ai_carrier_code
+          %dt
+            %b Notes:
+          %dd= @company.notes
+    .col-md-5
+      .well
+        %dl.dl-horizontal
+          %dt
+            %b Created At:
+          %dd= @company.created_at
+          %dt
+            %b Updated At:
+          %dd= @company.updated_at
+  .row
+    .col-md-10
+      .well
+        = link_to 'Edit', edit_company_path(@company), class: "btn btn-primary" if current_user.admin?
+        = link_to 'Back', companies_path, class: "btn btn-default"

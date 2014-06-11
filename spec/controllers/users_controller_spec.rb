@@ -50,7 +50,7 @@ describe UsersController do
 
       it "redirects to users#index" do
         delete :destroy, id: @user1
-        response.should redirect_to users_url
+        expect(response).to redirect_to users_url
       end
     end
 

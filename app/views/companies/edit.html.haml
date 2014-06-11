@@ -1,0 +1,12 @@
+- provide(:title, "Edit Company")
+.container
+  .row
+    %h3= "Edit #{@company.name}"
+  %br
+  .row
+    .col-sm-7
+      = render 'form'
+      .col-sm-offset-3.col-sm-9
+        = link_to 'Show', @company
+        |
+        = link_to 'Back', companies_path

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :state do
-    name "MyString"
-    abbreviation "MyString"
+    name "Alabama"
+    abbreviation "AL"
   end
 end

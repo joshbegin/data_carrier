@@ -1,9 +1,9 @@
 class CreateCompanies < ActiveRecord::Migration
   def change
     create_table :companies do |t|
-      t.integer :parent_company
-      t.integer :company_type
-      t.integer :state
+      t.integer :parent_company_id
+      t.integer :company_type_id
+      t.integer :state_id
       t.string :name, index: true
       t.string :additional_name
       t.string :address_line_1

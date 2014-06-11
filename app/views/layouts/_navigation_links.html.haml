@@ -6,3 +6,5 @@
   %li= link_to 'Users', users_path
 - if user_signed_in?
   %li= link_to 'Parent Companies', parent_companies_path
+- if user_signed_in?
+  %li= link_to 'Companies', companies_path

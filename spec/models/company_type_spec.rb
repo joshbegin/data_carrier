@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe CompanyType do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+      FactoryGirl.create(:company_type)
+    end
+
+    it { is_expected.to respond_to(:name) }
 end

@@ -79,7 +79,7 @@ describe ParentCompaniesController do
 
         it "redirects to parent_companies#index" do
           delete :destroy, id: @pc1
-          response.should redirect_to parent_companies_url
+          expect(response).to redirect_to parent_companies_url
         end
       end
     end

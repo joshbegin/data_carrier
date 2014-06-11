@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  before_action :set_company, only: [:edit, :update, :destroy]
 
   # GET /companies
   # GET /companies.json
@@ -10,6 +11,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    @company = Company.find(params[:id])
   end
 
   # GET /companies/new
@@ -64,7 +66,11 @@ class CompaniesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
-      @company = Company.find(params[:id])
+      if current_user.admin?
+        @company = Company.find(params[:id])
+      else
+        redirect_to parent_companies_path, notice: "User not authorized"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

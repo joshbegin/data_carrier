@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :company_type do
-    name "MyString"
+    name "Carrier"
   end
 end

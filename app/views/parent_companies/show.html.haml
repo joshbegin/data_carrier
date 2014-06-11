@@ -3,11 +3,22 @@
   .row
   %h3= "#{@parent_company.name} Details"
   .row
-    .col-md-5.well
-      %p
-        %b Name:
-        = @parent_company.name
-      %p
-        %b Additional Name:
-        = @parent_company.additional_name
-      = link_to 'Edit', edit_parent_company_path(@parent_company), class: "btn btn-default" if current_user.admin?
+    .col-md-5
+      .well
+        %p
+          %b Name:
+          = @parent_company.name
+        %p
+          %b Additional Name:
+          = @parent_company.additional_name
+  .row
+    .col-md-5
+      .well
+        = link_to 'Edit', edit_parent_company_path(@parent_company), class: "btn btn-primary" if current_user.admin?
+        = link_to 'Back', parent_companies_path, class: "btn btn-default"
+
+  .row
+    .col-md-12
+      %h3
+        = "#{@parent_company.name} Child Companies"
+      = render 'companies/companies'

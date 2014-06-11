@@ -13,6 +13,7 @@ class ParentCompaniesController < ApplicationController
   # GET /parent_companies/1.json
   def show
     @parent_company = ParentCompany.find(params[:id])
+    @companies = @parent_company.companies
   end
 
   # GET /parent_companies/new

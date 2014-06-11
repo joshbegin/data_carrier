@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(version: 20140507015114) do
 
   create_table "companies", force: true do |t|
-    t.integer  "parent_company"
-    t.integer  "company_type"
-    t.integer  "state"
+    t.integer  "parent_company_id"
+    t.integer  "company_type_id"
+    t.integer  "state_id"
     t.string   "name"
     t.string   "additional_name"
     t.string   "address_line_1"

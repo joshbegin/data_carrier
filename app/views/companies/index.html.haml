@@ -1,0 +1,8 @@
+- provide(:title, "Companies")
+.container
+  .row
+    .col-md-12
+      %h3 Companies
+      = render 'companies/companies'
+      %br/
+      = link_to "Add Company", new_company_path, class: "btn btn-primary" if current_user && current_user.admin?

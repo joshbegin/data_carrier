@@ -1,0 +1,68 @@
+= form_for(@company, html: { class: "form-horizontal"} ) do |f|
+  - if @company.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@company.errors.count, "error")
+        prohibited this company from being saved:
+      %ul
+        - @company.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :name, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :name, placeholder: "Name", class: "form-control"
+  .form-group
+    = f.label :additional_name, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :additional_name, placeholder: "Alias", class: "form-control"
+  .form-group
+    = f.label :parent_company_id, class: "col-sm-3 control-label"
+    .col-sm-9
+      = collection_select(:company, :parent_company_id, ParentCompany.all, :id, :name, prompt: "Select Parent Company")
+  .form-group
+    = f.label :company_type_id, class: "col-sm-3 control-label"
+    .col-sm-9
+      = collection_select(:company, :company_type_id, CompanyType.all, :id, :name, prompt: "Select Company Type")
+  .form-group
+    = f.label :address_line_1, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :address_line_1, placeholder: "Line 1", class: "form-control"
+  .form-group
+    = f.label :address_line_2, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :address_line_2, placeholder: "Line 2", class: "form-control"
+  .form-group
+    = f.label :address_line_3, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :address_line_3, placeholder: "Line 3", class: "form-control"
+  .form-group
+    = f.label :city, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :city, placeholder: "City", class: "form-control"
+  .form-group
+    = f.label :state_id, class: "col-sm-3 control-label"
+    .col-sm-9
+      = collection_select(:company, :state_id, State.all, :id, :name, prompt: "Select State")
+  .form-group
+    = f.label :zip, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :zip, placeholder: "Zip", class: "form-control"
+  .form-group
+    = f.label :url, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :url, placeholder: "URL", class: "form-control"
+  .form-group
+    = f.label :naic_code, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :naic_code, placeholder: "NAIC Code", class: "form-control"
+  .form-group
+    = f.label :ai_carrier_code, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :ai_carrier_code, placeholder: "AI Carrier Code", class: "form-control"
+  .form-group
+    = f.label :notes, class: "col-sm-3 control-label"
+    .col-sm-9
+      = f.text_field :notes, class: "form-control"
+  .form-group
+    .col-sm-offset-3.col-sm-9
+      = f.submit class: "btn btn-primary"
