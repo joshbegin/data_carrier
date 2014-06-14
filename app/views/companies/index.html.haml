@@ -2,6 +2,11 @@
 .container
   .row
     .col-md-12
+      %br
+      %ol.breadcrumb
+        %li= link_to "Home", root_path
+        %li= link_to "Parent Companies", parent_companies_path
+        %li.active= "Companies"
       %h3 Companies
       = render 'companies/companies'
       %br/

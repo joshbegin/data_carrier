@@ -1,7 +1,13 @@
 - provide(:title, "Parent Company Details")
 .container
   .row
-  %h3= "#{@parent_company.name} Details"
+    .col-md-12
+      %br
+      %ol.breadcrumb
+        %li= link_to "Home", root_path
+        %li= link_to "Parent Companies", parent_companies_path
+        %li.active= @parent_company.name
+      %h3= "#{@parent_company.name} Details"
   .row
     .col-md-5
       .well
