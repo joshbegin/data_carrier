@@ -37,7 +37,7 @@ describe "Non-admin Users" do
     end
 
     it "should not see Users link in navigation" do
-      expect(page).to_not have_link('Users')
+      expect(page).to_not have_link('Users', href: users_path)
     end
 
     it "should not be able to access /users page" do
@@ -71,5 +71,5 @@ describe "Admin Users" do
 
   it "should not be able to change their own role"
 
-  it "should not be able to delete themselves"
+  it "should not be able to delete themselves from the index page"
 end

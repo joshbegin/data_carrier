@@ -20,14 +20,10 @@ describe UsersController do
       expect(response).to_not be_success
     end
 
-    it "should not be able to change roles"
-
     it "should not be able to delete users other than themselves" do
       @user2 = FactoryGirl.create(:user)
       expect{ delete :destroy, id: @user2 }.to change(User,:count).by(0)
     end
-
-    it "should be able to delete themselves"
 
   end
 
@@ -53,8 +49,6 @@ describe UsersController do
         expect(response).to redirect_to users_url
       end
     end
-
-    it "should not be able to change their own role"
 
     it "should not be able to delete themselves" do
       @admin = User.first

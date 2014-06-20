@@ -16,7 +16,11 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def new
-    @company = Company.new
+    if current_user.admin?
+      @company = Company.new
+    else
+      redirect_to companies_path
+    end
   end
 
   # GET /companies/1/edit
@@ -69,7 +73,7 @@ class CompaniesController < ApplicationController
       if current_user.admin?
         @company = Company.find(params[:id])
       else
-        redirect_to parent_companies_path, notice: "User not authorized"
+        redirect_to companies_path, notice: "User not authorized"
       end
     end
 

@@ -14,25 +14,21 @@ describe "Companies" do
 
     it "should be able to access Companies (index) page" do
       visit companies_path
-
-      expect(page).to have_selector('h3',    text: 'Companies')
+      expect(current_path).to eq(companies_path)
     end
 
     it "should be able to view show pages" do
       visit company_path(@company)
-
-      expect(page).to have_selector('h3',     text: "#{@company.name} Details")
+      expect(current_path).to eq(company_path(@company))
     end
 
     it "should be able to edit Companies" do
       visit edit_company_path(@company)
-
-      expect(page).to have_selector('h3',     text: "Edit #{@company.name}")
+      expect(current_path).to eq(edit_company_path(@company))
     end
 
     it "should be able to add Companies" do
       visit new_company_path
-
       expect(page).to have_selector('h3',     text: 'New Company')
     end
 
@@ -49,22 +45,22 @@ describe "Companies" do
 
     it "should be able to access Companies (index) page" do
       visit companies_path
-      expect(page).to have_selector('h3',    text: 'Companies')
+      expect(current_path).to eq(companies_path)
     end
 
     it "should be able to view show pages" do
       visit company_path(@company)
-      expect(page).to have_selector('h3',     text: "#{@company.name}")
+      expect(current_path).to eq(company_path(@company))
     end
 
     it "should not be able to edit Companies" do
       visit edit_company_path(@company)
-      expect(page).to have_selector('h3',     text: 'Companies')
+      expect(current_path).to eq(companies_path)
     end
 
     it "should not be able to add Companies" do
       visit new_company_path
-      expect(page).to have_selector('h3',     text: 'Companies')
+      expect(current_path).to eq(companies_path)
     end
 
     it { is_expected.to have_link('Companies', href: companies_path) }
@@ -88,7 +84,7 @@ describe "Companies" do
     end
 
     it "should not be able to edit Companies" do
-      visit edit_company_path(@parent_company)
+      visit edit_company_path(@company)
       expect(page).to have_selector('h3',    text: 'Log in')
       expect(page).to have_content('You need to sign in or sign up before continuing.')
     end
