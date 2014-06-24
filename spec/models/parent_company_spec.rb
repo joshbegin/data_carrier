@@ -15,4 +15,6 @@ describe ParentCompany do
     ParentCompany.create!(@attr)
     is_expected.to validate_uniqueness_of(:name)
   end
+
+  it { should have_many(:companies) }
 end

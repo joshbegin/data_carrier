@@ -11,9 +11,14 @@ FactoryGirl.define do
     address_line_3 { Faker::Address.secondary_address }
     city { Faker::Address.city }
     zip { Faker::Address.zip_code }
-    url { Faker::Internet.url    }
+    url { Faker::Internet.url }
     naic_code "NAIC 1"
     ai_carrier_code "AI Code 1"
     notes { Faker::Lorem.paragraph }
+  end
+
+  factory :minimal_company, class: Company do
+    name { Faker::Company.name }
+    company_type_id 1
   end
 end

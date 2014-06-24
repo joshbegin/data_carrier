@@ -25,6 +25,8 @@
 
   .row
     .col-md-12
-      %h3
-        = "#{@parent_company.name} Child Companies"
-      = render 'companies/companies'
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            = "#{@parent_company.name} Child Companies"
+        = render 'companies/companies'

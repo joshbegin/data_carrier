@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507015114) do
+ActiveRecord::Schema.define(version: 20140622192749) do
 
   create_table "companies", force: true do |t|
     t.integer  "parent_company_id"
@@ -34,6 +34,39 @@ ActiveRecord::Schema.define(version: 20140507015114) do
 
   create_table "company_types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feed_frequencies", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feed_statuses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feed_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feeds", force: true do |t|
+    t.string   "name"
+    t.text     "notes"
+    t.string   "stage_feed_url"
+    t.string   "production_feed_url"
+    t.datetime "production_start_date"
+    t.datetime "production_end_date"
+    t.integer  "company_id"
+    t.integer  "feed_status_id"
+    t.integer  "feed_frequency_id"
+    t.integer  "feed_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

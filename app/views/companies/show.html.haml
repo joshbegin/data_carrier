@@ -5,8 +5,11 @@
       %br
       %ol.breadcrumb
         %li= link_to "Home", root_path
-        %li= link_to "Parent Companies", parent_companies_path
-        %li= link_to @company.parent_company.name, parent_company_path(@company.parent_company)
+        - if @company.parent_company.nil?
+          %li= link_to "Companies", companies_path
+        - else
+          %li= link_to "Parent Companies", parent_companies_path
+          %li= link_to @company.parent_company.name, parent_company_path(@company.parent_company)
         %li.active= @company.name
       %h3= "#{@company.name} Details"
   .row
@@ -21,10 +24,10 @@
           %dd= @company.additional_name
           %dt
             %b Company Type:
-          %dd= @company.company_type.name
+          %dd= @company.company_type.try(:name)
           %dt
             %b Parent Company:
-          %dd= link_to @company.parent_company.name, parent_company_path(@company.parent_company)
+          %dd= link_to @company.parent_company.name, parent_company_path(@company.parent_company) unless @company.parent_company.nil?
     .col-md-5
       .well
         %dl.dl-horizontal
@@ -37,7 +40,8 @@
               %br
               = @company.address_line_3
               %br
-              = "#{@company.city}, #{@company.state.name} #{@company.zip}"
+              - unless @company.city.nil? || @company.state_id.nil? || @company.zip.nil?
+                = "#{@company.try(:city)}, #{@company.try(:state).try(:name)} #{@company.try(:zip)}"
           %dt
             %b URL:
           %dd= @company.url

@@ -37,4 +37,5 @@ end
 group :test do
   gem 'minitest'
   gem 'shoulda-matchers'
+#todo - Add paper_trail gem to track changes and who made them
 end

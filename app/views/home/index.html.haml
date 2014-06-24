@@ -1,9 +1,41 @@
 .container
   .row
-    %h3 Home
-    .jumbotron
-      - if current_user.nil?
+    .col-md-12
+      %h3 Dashboard
+    - if current_user.nil?
+      .jumbotron
         %p Please sign up or sign in to access Carrier Data
         = button_to 'Login', user_session_path, method: 'get', class: 'btn btn-primary btn-lg'
-      - else
-        %p Please use the Menu bar above to access content
+    - else
+      - unless @recent_companies.nil?
+        .col-md-6
+          .panel.panel-primary
+            .panel-heading
+              %h3.panel-title Companies - Last edited
+            .table
+              %table.table.table-hover
+                %thead
+                  %tr
+                    %th Name
+                    %th Last Updated
+                %tbody
+                  - @recent_companies.each do |company|
+                    %tr
+                      %td= link_to "#{company.name}", company
+                      %td= "#{time_ago_in_words(company.updated_at)} ago (#{company.updated_at.strftime("%m-%d-%Y at %H:%M:%S %Z")})"
+      - unless @recent_parent_companies.nil?
+        .col-md-6
+          .panel.panel-primary
+            .panel-heading
+              %h3.panel-title Parent Companies - Last edited
+            .table-responsive
+              %table.table.table-hover
+                %thead
+                  %tr
+                    %th Name
+                    %th Last Updated
+                %tbody
+                  - @recent_parent_companies.each do |parent_company|
+                    %tr
+                      %td= link_to "#{parent_company.name}", parent_company
+                      %td= "#{time_ago_in_words(parent_company.updated_at)} ago (#{parent_company.updated_at.strftime("%m-%d-%Y at %H:%M:%S %Z")})"

@@ -63,6 +63,12 @@ describe "Companies" do
       expect(current_path).to eq(companies_path)
     end
 
+    it "should display show page when company has minimal fields" do
+      @minimal_company = FactoryGirl.create(:minimal_company)
+      visit company_path(@minimal_company)
+      expect(page).to have_text(@minimal_company.name)
+    end
+
     it { is_expected.to have_link('Companies', href: companies_path) }
   end
 

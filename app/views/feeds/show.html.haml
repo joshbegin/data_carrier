@@ -1,0 +1,70 @@
+- provide(:title, "Feed Details")
+.container
+  .row
+    .col-md-12
+      %br
+      %ol.breadcrumb
+        %li= link_to "Home", root_path
+        - if @feed.company.parent_company.nil?
+          %li= link_to "Companies", companies_path
+        - else
+          %li= link_to "Parent Companies", parent_companies_path
+          %li= link_to @feed.company.parent_company.name, parent_company_path(@feed.company.parent_company)
+        %li= link_to @feed.company.name, company_path(@feed.company)
+        %li.active= @feed.name
+      %h3= "#{@feed.company.name} - #{@feed.name} Feed Details"
+  .row
+    .col-md-5
+      .well
+        %dl.dl-horizontal
+          %dt
+            %b Name:
+          %dd= @feed.name
+          %dt
+            %b Carrier:
+          %dd= link_to @feed.company.name, company_path(@feed.company) unless @feed.company.nil?
+          %dt
+            %b Parent Company:
+          %dd= link_to @feed.company.parent_company.name, parent_company_path(@feed.company.parent_company) unless @feed.company.parent_company.nil?
+          %dt
+            %b Feed Type:
+          %dd= @feed.feed_type.try(:name)
+          %dt
+            %b Feed Status:
+          %dd= @feed.feed_status.try(:name)
+          %dt
+            %b Feed Frequency:
+          %dd= @feed.feed_frequency.try(:name)
+          %dt
+            %b Stage URL:
+          %dd= link_to @feed.stage_feed_url, url_with_protocol(@feed.stage_feed_url), target: "_blank"
+          %dt
+            %b Production URL:
+          %dd= link_to @feed.production_feed_url, url_with_protocol(@feed.production_feed_url), target: "_blank"
+          %dt
+            %b Production Start Date:
+          %dd= @feed.production_start_date.strftime("%m-%d-%Y")
+          %dt
+            %b Production End Date:
+          %dd= @feed.production_end_date.strftime("%m-%d-%Y")
+  .row
+    .col-md-5
+      .well
+        %dl.dl-horizontal
+          %dt
+            %b Notes:
+          %dd= @feed.notes
+    .col-md-5
+      .well
+        %dl.dl-horizontal
+          %dt
+            %b Created At:
+          %dd= @feed.created_at
+          %dt
+            %b Updated At:
+          %dd= @feed.try(:updated_at)
+  .row
+    .col-md-10
+      .well
+        = link_to 'Edit', edit_feed_path(@feed), class: "btn btn-primary" if current_user.admin?
+        = link_to 'Back', feeds_path, class: "btn btn-default"

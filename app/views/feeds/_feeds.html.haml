@@ -1,0 +1,17 @@
+.table-responsive
+  %table.table.table-striped.table-hover.table-condensed
+    %thead
+      %tr
+        %th Name
+        %th Company Name
+        %th Parent Company
+        %th
+        %th
+    %tbody
+      - @feeds.each do |feed|
+        %tr
+          %td= link_to "#{feed.name}", feed
+          %td= feed.company.name
+          %td= feed.try(:company).try(:parent_company).try(:name)
+          %td= link_to "Edit", edit_feed_path(feed), class: "btn btn-xs btn-link" if current_user && current_user.admin?
+          %td= link_to "Delete", feed, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" if current_user && current_user.admin?

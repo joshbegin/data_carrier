@@ -73,3 +73,55 @@ CompanyType.create(name: "Carrier")
 CompanyType.create(name: "Exam")
 
 puts "#{CompanyType.count} Types of Companies"
+
+frequencies = [
+  "Real-time",
+  "Every 15 minutes",
+  "Every 30 minutes",
+  "Hourly",
+  "Hourly during business hours",
+  "8 times per day",
+  "7 times per day",
+  "6 times per day",
+  "5 times per day",
+  "4 times per day",
+  "3 times per day",
+  "Twice a day",
+  "Daily",
+  "Twice a week",
+  "Weekly",
+  "Bi-weekly",
+  "Monthly"]
+
+frequencies.each do |frequency|
+  FeedFrequency.create(name: frequency)
+end
+
+puts "#{FeedFrequency.count} types of feed frequencies"
+
+statuses = [
+  "In the pipeline",
+  "Test",
+  "Production"
+]
+
+statuses.each do |status|
+  FeedStatus.create(name: status)
+end
+
+puts "#{FeedStatus.count} types of feed statuses"
+
+types = [
+  "Pending",
+  "Inforce",
+  "Commission",
+  "License & Appointment",
+  "Two-Way Messaging",
+  "App Upload"
+]
+
+types.each do |type|
+  FeedType.create(name: type)
+end
+
+puts "#{FeedType.count} types of feed types"

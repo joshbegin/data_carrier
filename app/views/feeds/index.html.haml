@@ -1,0 +1,14 @@
+- provide(:title, "Feeds")
+.container
+  .row
+    .col-md-12
+      %br
+      %ol.breadcrumb
+        %li= link_to "Home", root_path
+        %li= link_to "Parent Companies", parent_companies_path
+        %li= link_to "Companies", companies_path
+        %li.active= "Feeds"
+      %h3 Feeds
+      = render 'feeds/feeds'
+      %br/
+      = link_to "Add Feed", new_feed_path, class: "btn btn-primary" if current_user && current_user.admin?

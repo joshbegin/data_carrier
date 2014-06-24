@@ -1,0 +1,12 @@
+- provide(:title, "Edit Feed")
+.container
+  .row
+    %h3= "Edit #{@feed.name}"
+  %br
+  .row
+    .col-sm-7
+      = render 'form'
+      .col-sm-offset-3.col-sm-9
+        = link_to 'Show', @feed
+        |
+        = link_to 'Back', feeds_path

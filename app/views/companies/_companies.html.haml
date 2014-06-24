@@ -11,7 +11,7 @@
       - @companies.each do |company|
         %tr
           %td= link_to "#{company.name}", company
-          %td= company.additional_name
-          %td= company.parent_company.name
+          %td= company.try(:additional_name)
+          %td= company.try(:parent_company).try(:name)
           %td= link_to "Edit", edit_company_path(company), class: "btn btn-xs btn-link" if current_user && current_user.admin?
           %td= link_to "Delete", company, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" if current_user && current_user.admin?
