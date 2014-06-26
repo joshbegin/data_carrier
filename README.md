@@ -1,69 +1,10 @@
 Data Carrier
 =========
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
+This site was created to track Company, Feed and Contact information to replace several spreadsheets currently used to track this information.
+
+This application was initially generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
 provided by the [RailsApps Project](http://railsapps.github.io/).
-
-Diagnostics
------------
-
-This application was built with recipes that are known to work together.
-
-This application was built with preferences that are NOT known to work
-together.
-
-If the application doesn’t work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include these diagnostics:
-
-We’d also like to know if you’ve found combinations of recipes or
-preferences that do work together.
-
-Recipes:
-
-* apps4
-* controllers
-* core
-* email
-* extras
-* frontend
-* gems
-* git
-* init
-* models
-* prelaunch
-* railsapps
-* readme
-* routes
-* saas
-* setup
-* testing
-* views
-
-Preferences:
-
-* git: true
-* apps4: rails-devise-pundit
-* unit_test: false
-* integration: false
-* fixtures: false
-* authentication: devise
-* authorization: pundit
-* starter_app: admin_app
-* quiet_assets: true
-* local_env_file: false
-* better_errors: true
-* dev_webserver: thin
-* prod_webserver: thin
-* database: sqlite
-* templates: haml
-* continuous_testing: guard
-* frontend: bootstrap3
-* email: gmail
-* devise_modules: default
-* form_builder: none
-* rvmrc: true
-* ban_spiders: true
-* github: true
 
 Ruby on Rails
 -------------
@@ -84,7 +25,7 @@ Development
 -----------
 
 -   Template Engine: Haml
--   Testing Framework: Test::Unit
+-   Testing Framework: RSpec
 -   Front-end Framework: Bootstrap 3.0 (Sass)
 -   Form Builder: None
 -   Authentication: Devise
