@@ -41,6 +41,12 @@ describe "ParentCompanies" do
       expect(page).to have_selector('h3',     text: 'New Parent Company')
     end
 
+    it "should display show page when parent company has minimal fields" do
+      @minimal_parent_company = FactoryGirl.create(:minimal_parent_company)
+      visit parent_company_path(@minimal_parent_company)
+      expect(page).to have_text(@minimal_parent_company.name)
+    end
+
     it { is_expected.to have_link('Parent Companies', href: parent_companies_path) }
 
     # it "should display the correct child carriers" do

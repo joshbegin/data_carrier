@@ -39,3 +39,19 @@
                     %tr
                       %td= link_to "#{parent_company.name}", parent_company
                       %td= "#{time_ago_in_words(parent_company.updated_at)} ago (#{parent_company.updated_at.strftime("%m-%d-%Y at %H:%M:%S %Z")})"
+      - unless @recent_feeds.nil?
+        .col-md-12
+          .panel.panel-primary
+            .panel-heading
+              %h3.panel-title Feeds - Last edited
+            .table-responsive
+              %table.table.table-hover
+                %thead
+                  %tr
+                    %th Name
+                    %th Last Updated
+                %tbody
+                  - @recent_feeds.each do |feed|
+                    %tr
+                      %td= link_to "#{feed.name}", feed
+                      %td= "#{time_ago_in_words(feed.updated_at)} ago (#{feed.updated_at.strftime("%m-%d-%Y at %H:%M:%S %Z")})"

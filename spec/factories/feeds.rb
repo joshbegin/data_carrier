@@ -13,4 +13,11 @@ FactoryGirl.define do
     feed_frequency_id 1
     feed_type_id 1
   end
+
+  factory :minimal_feed, class: Feed do
+    name { Faker::Company.name }
+    company_id 1
+    feed_status_id 1
+    feed_type_id 1
+  end
 end

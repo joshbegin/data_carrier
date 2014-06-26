@@ -50,53 +50,53 @@ describe "Feeds" do
       expect(current_path).to eq(feeds_path)
     end
 
-  #   it "should be able to view show pages" do
-  #     visit feed_path(@feed)
-  #     expect(current_path).to eq(feed_path(@feed))
-  #   end
+    it "should be able to view show pages" do
+      visit feed_path(@feed)
+      expect(current_path).to eq(feed_path(@feed))
+    end
 
-  #   it "should not be able to edit Companies" do
-  #     visit edit_feed_path(@feed)
-  #     expect(current_path).to eq(companies_path)
-  #   end
+    it "should not be able to edit Feeds" do
+      visit edit_feed_path(@feed)
+      expect(current_path).to eq(feeds_path)
+    end
 
-  #   it "should not be able to add Companies" do
-  #     visit new_feed_path
-  #     expect(current_path).to eq(companies_path)
-  #   end
+    it "should not be able to add Feeds" do
+      visit new_feed_path
+      expect(current_path).to eq(feeds_path)
+    end
 
-  #   it "should display show page when feed has minimal fields" do
-  #     @minimal_feed = FactoryGirl.create(:minimal_feed)
-  #     visit feed_path(@minimal_feed)
-  #     expect(page).to have_text(@minimal_feed.name)
-  #   end
+    it "should display show page when feed has minimal fields" do
+      @minimal_feed = FactoryGirl.create(:minimal_feed)
+      visit feed_path(@minimal_feed)
+      expect(page).to have_text(@minimal_feed.name)
+    end
 
-  #   it { is_expected.to have_link('Companies', href: companies_path) }
-  # end
+    it { is_expected.to have_link('Feeds', href: feeds_path) }
+  end
 
-  # describe "when not signed in" do
-  #   before do
-  #     @feed = FactoryGirl.create(:feed)
-  #   end
+  describe "when not signed in" do
+    before do
+      @feed = FactoryGirl.create(:feed)
+    end
 
-  #   it "should not be able to access Companies (index) page" do
-  #     visit companies_path
-  #     expect(page).to have_selector('h3',    text: 'Log in')
-  #     expect(page).to have_content('You need to sign in or sign up before continuing.')
-  #   end
+    it "should not be able to access Feeds (index) page" do
+      visit feeds_path
+      expect(page).to have_selector('h3',    text: 'Log in')
+      expect(page).to have_content('You need to sign in or sign up before continuing.')
+    end
 
-  #   it "should not be able to view show pages" do
-  #     visit feed_path(@feed)
-  #     expect(page).to have_selector('h3',    text: 'Log in')
-  #     expect(page).to have_content('You need to sign in or sign up before continuing.')
-  #   end
+    it "should not be able to view show pages" do
+      visit feed_path(@feed)
+      expect(page).to have_selector('h3',    text: 'Log in')
+      expect(page).to have_content('You need to sign in or sign up before continuing.')
+    end
 
-  #   it "should not be able to edit Companies" do
-  #     visit edit_feed_path(@feed)
-  #     expect(page).to have_selector('h3',    text: 'Log in')
-  #     expect(page).to have_content('You need to sign in or sign up before continuing.')
-  #   end
+    it "should not be able to edit Feeds" do
+      visit edit_feed_path(@feed)
+      expect(page).to have_selector('h3',    text: 'Log in')
+      expect(page).to have_content('You need to sign in or sign up before continuing.')
+    end
 
-  #   it { is_expected.not_to have_link('Companies', href: companies_path) }
+    it { is_expected.not_to have_link('Feeds', href: feeds_path) }
   end
 end

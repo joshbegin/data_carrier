@@ -28,10 +28,13 @@
           %dd= link_to @feed.company.parent_company.name, parent_company_path(@feed.company.parent_company) unless @feed.company.parent_company.nil?
           %dt
             %b Feed Type:
-          %dd= @feed.feed_type.try(:name)
+          %dd= @feed.feed_type.name
           %dt
             %b Feed Status:
-          %dd= @feed.feed_status.try(:name)
+          %dd= @feed.feed_status.name
+    .col-md-5
+      .well
+        %dl.dl-horizontal
           %dt
             %b Feed Frequency:
           %dd= @feed.feed_frequency.try(:name)
@@ -43,10 +46,10 @@
           %dd= link_to @feed.production_feed_url, url_with_protocol(@feed.production_feed_url), target: "_blank"
           %dt
             %b Production Start Date:
-          %dd= @feed.production_start_date.strftime("%m-%d-%Y")
+          %dd= @feed.production_start_date.strftime("%m-%d-%Y") unless @feed.production_start_date.nil?
           %dt
             %b Production End Date:
-          %dd= @feed.production_end_date.strftime("%m-%d-%Y")
+          %dd= @feed.production_end_date.strftime("%m-%d-%Y") unless @feed.production_end_date.nil?
   .row
     .col-md-5
       .well

@@ -1,5 +1,6 @@
 class FeedsController < ApplicationController
-  before_action :set_feed, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  before_action :set_feed, only: [:edit, :update, :destroy]
 
   # GET /feeds
   # GET /feeds.json
@@ -10,11 +11,16 @@ class FeedsController < ApplicationController
   # GET /feeds/1
   # GET /feeds/1.json
   def show
+    @feed = Feed.find(params[:id])
   end
 
   # GET /feeds/new
   def new
-    @feed = Feed.new
+    if current_user.admin?
+      @feed = Feed.new
+    else
+      redirect_to feeds_path
+    end
   end
 
   # GET /feeds/1/edit
@@ -64,7 +70,11 @@ class FeedsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_feed
-      @feed = Feed.find(params[:id])
+      if current_user.admin?
+        @feed = Feed.find(params[:id])
+      else
+        redirect_to feeds_path, notice: "User not authorized"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

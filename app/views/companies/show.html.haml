@@ -72,3 +72,11 @@
       .well
         = link_to 'Edit', edit_company_path(@company), class: "btn btn-primary" if current_user.admin?
         = link_to 'Back', companies_path, class: "btn btn-default"
+
+  .row
+    .col-md-10
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            = "#{@company.name} Feeds"
+        = render 'feeds/feeds'

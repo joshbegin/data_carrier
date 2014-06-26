@@ -3,5 +3,6 @@ class HomeController < ApplicationController
     @users = User.all
     @recent_companies = Company.recently_updated(5)
     @recent_parent_companies = ParentCompany.recently_updated(5)
+    @recent_feeds = Feed.recently_updated(5)
   end
 end
