@@ -67,6 +67,13 @@
           %dt
             %b Updated At:
           %dd= @company.updated_at
+          %dt
+            %b Updated By:
+          %dd= find_updater(@company.originator).try(:email)
+          / %dt
+          /   %b Last Change:
+          / %dd= @company.versions.last.try(:changeset)
+
   .row
     .col-md-10
       .well

@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'pundit'
 gem 'thin'
 gem "brakeman", :require => false
+gem 'paper_trail'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'better_errors'

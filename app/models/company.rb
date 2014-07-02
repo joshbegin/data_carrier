@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
+  has_paper_trail
   belongs_to :parent_company
   belongs_to :company_type
   belongs_to :state

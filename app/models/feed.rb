@@ -1,4 +1,5 @@
 class Feed < ActiveRecord::Base
+  has_paper_trail
   belongs_to :company
   belongs_to :feed_status
   belongs_to :feed_frequency

@@ -17,6 +17,12 @@
         %p
           %b Additional Name:
           = @parent_company.additional_name
+        %p
+          %b Updated By:
+          = find_updater(@parent_company.originator).try(:email)
+        / %p
+        /   %b Last Change:
+        / = @parent_company.versions.last.try(:changeset)
   .row
     .col-md-5
       .well

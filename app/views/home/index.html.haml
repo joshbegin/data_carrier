@@ -2,6 +2,7 @@
   .row
     .col-md-12
       %h3 Dashboard
+      %hr
     - if current_user.nil?
       .jumbotron
         %p Please sign up or sign in to access Carrier Data
@@ -17,41 +18,53 @@
                 %thead
                   %tr
                     %th Name
-                    %th Last Updated
+                    %th Last Updated Date
+                    %th Last Updated Time
+                    %th Last Updated By
                 %tbody
                   - @recent_companies.each do |company|
                     %tr
                       %td= link_to "#{company.name}", company
-                      %td= "#{time_ago_in_words(company.updated_at)} ago (#{company.updated_at.strftime("%m-%d-%Y at %H:%M:%S %Z")})"
+                      %td= "#{company.updated_at.strftime("%m-%d-%Y")}"
+                      %td= "#{company.updated_at.strftime("%H:%M:%S %Z")}"
+                      %td= find_updater(company.originator).try(:email)
       - unless @recent_parent_companies.nil?
         .col-md-6
           .panel.panel-primary
             .panel-heading
               %h3.panel-title Parent Companies - Last edited
-            .table-responsive
+            .table
               %table.table.table-hover
                 %thead
                   %tr
                     %th Name
-                    %th Last Updated
+                    %th Last Updated Date
+                    %th Last Updated Time
+                    %th Last Updated By
                 %tbody
                   - @recent_parent_companies.each do |parent_company|
                     %tr
                       %td= link_to "#{parent_company.name}", parent_company
-                      %td= "#{time_ago_in_words(parent_company.updated_at)} ago (#{parent_company.updated_at.strftime("%m-%d-%Y at %H:%M:%S %Z")})"
+                      %td= "#{parent_company.updated_at.strftime("%m-%d-%Y")}"
+                      %td= "#{parent_company.updated_at.strftime("%H:%M:%S %Z")}"
+                      %td= find_updater(parent_company.originator).try(:email)
       - unless @recent_feeds.nil?
         .col-md-12
           .panel.panel-primary
             .panel-heading
               %h3.panel-title Feeds - Last edited
-            .table-responsive
+            .table
               %table.table.table-hover
                 %thead
                   %tr
                     %th Name
-                    %th Last Updated
+                    %th Last Updated Date
+                    %th Last Updated Time
+                    %th Last Updated By
                 %tbody
                   - @recent_feeds.each do |feed|
                     %tr
                       %td= link_to "#{feed.name}", feed
-                      %td= "#{time_ago_in_words(feed.updated_at)} ago (#{feed.updated_at.strftime("%m-%d-%Y at %H:%M:%S %Z")})"
+                      %td= "#{feed.updated_at.strftime("%m-%d-%Y")}"
+                      %td= "#{feed.updated_at.strftime("%H:%M:%S %Z")}"
+                      %td= find_updater(feed.originator).try(:email)

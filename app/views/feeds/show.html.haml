@@ -66,6 +66,12 @@
           %dt
             %b Updated At:
           %dd= @feed.try(:updated_at)
+          %dt
+            %b Updated By:
+          %dd= find_updater(@feed.originator).try(:email)
+          / %dt
+          /   %b Last Change:
+          / %dd= @feed.versions.last.try(:changeset)
   .row
     .col-md-10
       .well
