@@ -13,77 +13,103 @@
         %li.active= @company.name
       %h3= "#{@company.name} Details"
   .row
-    .col-md-5
-      .well
-        %dl.dl-horizontal
-          %dt
-            %b Name:
-          %dd= @company.name
-          %dt
-            %b Additional Name:
-          %dd= @company.additional_name
-          %dt
-            %b Company Type:
-          %dd= @company.company_type.try(:name)
-          %dt
-            %b Parent Company:
-          %dd= link_to @company.parent_company.name, parent_company_path(@company.parent_company) unless @company.parent_company.nil?
-    .col-md-5
-      .well
-        %dl.dl-horizontal
-          %dt
-            %b Address:
-            %dd
-              = @company.address_line_1
-              %br
-              = @company.address_line_2
-              %br
-              = @company.address_line_3
-              %br
-              - unless @company.city.nil? || @company.state_id.nil? || @company.zip.nil?
-                = "#{@company.try(:city)}, #{@company.try(:state).try(:name)} #{@company.try(:zip)}"
-          %dt
-            %b URL:
-          %dd= @company.url
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseCompanyOne"}
+              Company Information
+        #collapseCompanyOne.panel-collapse.collapse.in
+          .panel-body
+            %dl.dl-horizontal
+              %dt
+                %b Name:
+              %dd= @company.name
+              %dt
+                %b Additional Name:
+              %dd= @company.additional_name
+              %dt
+                %b Company Type:
+              %dd= @company.company_type.try(:name)
+              %dt
+                %b Parent Company:
+              %dd= link_to @company.parent_company.name, parent_company_path(@company.parent_company) unless @company.parent_company.nil?
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseCompanyTwo"}
+              Address
+        #collapseCompanyTwo.panel-collapse.collapse.in
+          .panel-body
+            %dl.dl-horizontal
+              %dt
+                %b Address:
+                %dd
+                  = @company.address_line_1
+                  %br
+                  = @company.address_line_2
+                  %br
+                  = @company.address_line_3
+                  %br
+                  - unless @company.city.nil? || @company.state_id.nil? || @company.zip.nil?
+                    = "#{@company.try(:city)}, #{@company.try(:state).try(:name)} #{@company.try(:zip)}"
+              %dt
+                %b URL:
+              %dd= @company.url
   .row
-    .col-md-5
-      .well
-        %dl.dl-horizontal
-          %dt
-            %b NAIC Code:
-          %dd= @company.naic_code
-          %dt
-            %b AI Carrier Code:
-          %dd= @company.ai_carrier_code
-          %dt
-            %b Notes:
-          %dd= @company.notes
-    .col-md-5
-      .well
-        %dl.dl-horizontal
-          %dt
-            %b Created At:
-          %dd= @company.created_at
-          %dt
-            %b Updated At:
-          %dd= @company.updated_at
-          %dt
-            %b Updated By:
-          %dd= find_updater(@company.originator).try(:email)
-          / %dt
-          /   %b Last Change:
-          / %dd= @company.versions.last.try(:changeset)
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseCompanyThree"}
+              Codes and Notes
+        #collapseCompanyThree.panel-collapse.collapse.in
+          .panel-body
+            %dl.dl-horizontal
+              %dt
+                %b NAIC Code:
+              %dd= @company.naic_code
+              %dt
+                %b AI Carrier Code:
+              %dd= @company.ai_carrier_code
+              %dt
+                %b Notes:
+              %dd= @company.notes
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseCompanyFour"}
+              Company Updates
+        #collapseCompanyFour.panel-collapse.collapse.in
+          .panel-body
+            %dl.dl-horizontal
+              %dt
+                %b Created At:
+              %dd= @company.created_at
+              %dt
+                %b Updated At:
+              %dd= @company.updated_at
+              %dt
+                %b Updated By:
+              %dd= find_updater(@company.originator).try(:email)
+              / %dt
+              /   %b Last Change:
+              / %dd= @company.versions.last.try(:changeset)
 
   .row
-    .col-md-10
+    .col-md-12
       .well
         = link_to 'Edit', edit_company_path(@company), class: "btn btn-primary" if current_user.admin?
         = link_to 'Back', companies_path, class: "btn btn-default"
 
   .row
-    .col-md-10
+    .col-md-12
       .panel.panel-default
         .panel-heading
-          %h3.panel-title
-            = "#{@company.name} Feeds"
-        = render 'feeds/feeds'
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseCompanyFive"}
+              = "#{@company.name} Feeds"
+        #collapseCompanyFive.panel-collapse.collapse.in
+          = render 'feeds/feeds'

@@ -30,19 +30,19 @@
   .form-group
     = f.label :stage_feed_url, class: "col-sm-4 control-label"
     .col-sm-8
-      = f.text_field :stage_feed_url, placeholder: "Stage URL", class: "form-control"
+      = f.text_field :stage_feed_url, value: "https://", class: "form-control"
   .form-group
     = f.label :production_feed_url, class: "col-sm-4 control-label"
     .col-sm-8
-      = f.text_field :production_feed_url, placeholder: "Production URL", class: "form-control"
+      = f.text_field :production_feed_url, value: "https://", class: "form-control"
   .form-group
     = f.label :production_start_date, class: "col-sm-4 control-label"
     .col-sm-8
-      = date_select :feed, :production_start_date, include_blank: true, class: "form-control"
+      = f.date_field :production_start_date
   .form-group
     = f.label :production_end_date, class: "col-sm-4 control-label"
     .col-sm-8
-      = date_select :feed, :production_end_date, include_blank: true, class: "form-control"
+      = f.date_field :production_end_date
   .form-group
     = f.label :notes, class: "col-sm-4 control-label"
     .col-sm-8
