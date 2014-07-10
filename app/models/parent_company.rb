@@ -7,4 +7,5 @@ class ParentCompany < ActiveRecord::Base
                   uniqueness: true
 
   scope :recently_updated, ->(num) { order('updated_at DESC').limit(num) }
+  scope :sort_by_name, ->  { order(:name) }
 end

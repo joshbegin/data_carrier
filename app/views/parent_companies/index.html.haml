@@ -13,6 +13,7 @@
             %tr
               %th Name
               %th Additional Name
+              %th Child Companies
               %th
               %th
           %tbody
@@ -20,6 +21,7 @@
               %tr
                 %td= link_to "#{parent_company.name}", parent_company
                 %td= parent_company.additional_name
+                %td= parent_company.companies.count
                 %td= link_to "Edit", edit_parent_company_path(parent_company), class: "btn btn-xs btn-link" if current_user && current_user.admin?
                 %td= link_to "Delete", parent_company, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" if current_user && current_user.admin?
       %br/

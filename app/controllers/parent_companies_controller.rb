@@ -6,7 +6,7 @@ class ParentCompaniesController < ApplicationController
   # GET /parent_companies
   # GET /parent_companies.json
   def index
-    @parent_companies = ParentCompany.all
+    @parent_companies = ParentCompany.sort_by_name.all
   end
 
   # GET /parent_companies/1

@@ -9,4 +9,5 @@ class Company < ActiveRecord::Base
   validates :company_type_id, presence: true
 
   scope :recently_updated, ->(num) { order('updated_at DESC').limit(num) }
+  scope :sort_by_name, ->  { order(:name) }
 end

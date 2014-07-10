@@ -9,4 +9,5 @@ class Feed < ActiveRecord::Base
   validates :company_id, :feed_type_id, :feed_status_id, presence: true
 
   scope :recently_updated, ->(num) { order('updated_at DESC').limit(num) }
+  scope :sort_by_company, -> { order('companies.name', 'feeds.name').includes(:company) }
 end
