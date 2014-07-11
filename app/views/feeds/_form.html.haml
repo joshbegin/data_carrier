@@ -20,6 +20,10 @@
     .col-sm-8
       = collection_select(:feed, :feed_type_id, FeedType.all, :id, :name, prompt: "Select Feed Type")
   .form-group
+    = f.label :transaction_type, class: "col-sm-4 control-label"
+    .col-sm-8
+      = f.text_field :transaction_type, placeholder: "ACORD Transaction Type", class: "form-control"
+  .form-group
     = f.label :feed_frequency_id, class: "col-sm-4 control-label"
     .col-sm-8
       = collection_select(:feed, :feed_frequency_id, FeedFrequency.all, :id, :name, prompt: "Select Feed Frequency")
@@ -30,11 +34,11 @@
   .form-group
     = f.label :stage_feed_url, class: "col-sm-4 control-label"
     .col-sm-8
-      = f.text_field :stage_feed_url, value: "https://", class: "form-control"
+      = f.url_field :stage_feed_url, placeholder: "http://...", class: "form-control"
   .form-group
     = f.label :production_feed_url, class: "col-sm-4 control-label"
     .col-sm-8
-      = f.text_field :production_feed_url, value: "https://", class: "form-control"
+      = f.url_field :production_feed_url, placeholder: "http://...", class: "form-control"
   .form-group
     = f.label :production_start_date, class: "col-sm-4 control-label"
     .col-sm-8
@@ -44,9 +48,49 @@
     .col-sm-8
       = f.date_field :production_end_date
   .form-group
+    .col-sm-offset-4.col-sm-8
+      .checkbox
+        = f.label :sent_to_data_rail, "Sent to DataRail?"
+        = f.check_box :sent_to_data_rail
+  .form-group
+    .col-sm-offset-4.col-sm-8
+      .checkbox
+        = f.label :enhanced_carrier_status, "Enhanced Carrier Status?"
+        = f.check_box :enhanced_carrier_status
+  .form-group
+    = f.label :data_rail_api_key, "DataRail API Key", class: "col-sm-4 control-label"
+    .col-sm-8
+      = f.text_field :data_rail_api_key, class: "form-control"
+  .form-group
+    = f.label :data_rail_password, "DataRail Password", class: "col-sm-4 control-label"
+    .col-sm-8
+      = f.text_field :data_rail_password, class: "form-control"
+  .form-group
+    = f.label :data_rail_queue_priority, "DataRail Queue Priority", class: "col-sm-4 control-label"
+    .col-sm-8
+      = f.number_field :data_rail_queue_priority, class: "form-control"
+  .form-group
+    = f.label :data_view_username, "DataRail Username", class: "col-sm-4 control-label"
+    .col-sm-8
+      = f.text_field :data_view_username, class: "form-control"
+  .form-group
+    = f.label :data_view_password, "DataRail Password", class: "col-sm-4 control-label"
+    .col-sm-8
+      = f.text_field :data_view_password, class: "form-control"
+  .form-group
+    = f.label :partner, "Partner (Partner Connections)", class: "col-sm-4 control-label"
+    .col-sm-8
+      = f.text_field :partner, class: "form-control"
+  .form-group
+    .col-sm-offset-4.col-sm-8
+      .checkbox
+        = f.label :split_by_data_rail, "Split by DataRail?"
+        = f.check_box :split_by_data_rail
+  .form-group
     = f.label :notes, class: "col-sm-4 control-label"
     .col-sm-8
       = f.text_area :notes, class: "form-control"
   .form-group
-    .col-sm-offset-3.col-sm-8
+    .col-sm-offset-4.col-sm-8
       = f.submit class: "btn btn-primary"
+      = link_to "Cancel", :back, class: "btn btn-default"

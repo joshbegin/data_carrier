@@ -1,5 +1,10 @@
 // import the CSS framework
+/*$navbar-default-bg: #1474B7;
+$btn-primary-bg: #FF7721;*/
+
+@import "bootswatch/flatly/variables";
 @import "bootstrap";
+@import "bootswatch/flatly/bootswatch";
 
 // make all images responsive by default
 img {

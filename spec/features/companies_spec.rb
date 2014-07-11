@@ -32,6 +32,12 @@ describe "Companies" do
       expect(page).to have_selector('h3',     text: 'New Company')
     end
 
+    it "should display the correct feeds" do
+      @feed = FactoryGirl.create(:feed)
+      visit company_path(@company)
+      expect(page).to have_text(@feed.name)
+    end
+
     it { is_expected.to have_link('Companies', href: companies_path) }
 
   end

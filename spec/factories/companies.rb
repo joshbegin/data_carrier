@@ -15,6 +15,7 @@ FactoryGirl.define do
     naic_code "NAIC 1"
     ai_carrier_code "AI Code 1"
     notes { Faker::Lorem.paragraph }
+    parent_company_id 1
   end
 
   factory :minimal_company, class: Company do

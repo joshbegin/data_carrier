@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     if current_user.admin?
-      @company = Company.new
+      @company = Company.new(parent_company_id: params[:parent_company_id])
     else
       redirect_to companies_path
     end
@@ -65,6 +65,7 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to companies_url }
       format.json { head :no_content }
+      format.js
     end
   end
 

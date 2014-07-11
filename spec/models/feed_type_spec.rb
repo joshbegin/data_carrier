@@ -11,7 +11,8 @@ describe FeedType do
       "Commission",
       "License & Appointment",
       "Two-Way Messaging",
-      "App Upload"
+      "App Upload",
+      "Partner Connections"
     ]
 
     types.each do |t|

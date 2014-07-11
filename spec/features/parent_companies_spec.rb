@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe "ParentCompanies" do
-  # let(:parent_company) { FactoryGirl.create(:parent_company) }
-  # let(:company) { FactoryGirl.create(:company) }
-  # let(:company2) { FactoryGirl.create(:company) }
 
   subject { page }
 
@@ -13,8 +10,6 @@ describe "ParentCompanies" do
       @admin = FactoryGirl.create(:admin)
       @parent_company = FactoryGirl.create(:parent_company)
       signin(@admin)
-      # company.parent_company_id = parent_company.id
-      # company.save
     end
 
     it "should be able to access Parent Companies (index) page" do
@@ -49,11 +44,11 @@ describe "ParentCompanies" do
 
     it { is_expected.to have_link('Parent Companies', href: parent_companies_path) }
 
-    # it "should display the correct child carriers" do
-    #   visit parent_company_path(parent_company)
-    #   page.should have_content("#{company.naic_code}")
-    #   page.should_not have_content("#{company2.naic_code}")
-    # end
+    it "should display the correct child carriers" do
+      @company = FactoryGirl.create(:company)
+      visit parent_company_path(@parent_company)
+      expect(page).to have_text(@company.name)
+    end
 
   end
 

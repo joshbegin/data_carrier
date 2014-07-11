@@ -113,3 +113,5 @@
               = "#{@company.name} Feeds"
         #collapseCompanyFive.panel-collapse.collapse.in
           = render 'feeds/feeds'
+        .panel-footer
+          = link_to "Add Feed", new_feed_path(company_id: @company.id), class: "btn btn-primary btn-sm" if current_user && current_user.admin?

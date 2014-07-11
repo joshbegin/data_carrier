@@ -10,10 +10,10 @@
         %th
     %tbody
       - @companies.each do |company|
-        %tr
+        = content_tag_for(:tr, company) do
           %td= link_to "#{company.name}", company
           %td= company.try(:additional_name)
           %td= company.try(:parent_company).try(:name)
           %td= company.feeds.count
           %td= link_to "Edit", edit_company_path(company), class: "btn btn-xs btn-link" if current_user && current_user.admin?
-          %td= link_to "Delete", company, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" if current_user && current_user.admin?
+          %td= link_to "Delete", company, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-xs btn-danger" if current_user && current_user.admin?

@@ -17,7 +17,7 @@ class FeedsController < ApplicationController
   # GET /feeds/new
   def new
     if current_user.admin?
-      @feed = Feed.new
+      @feed = Feed.new(company_id: params[:company_id])
     else
       redirect_to feeds_path
     end
@@ -64,6 +64,7 @@ class FeedsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to feeds_url }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -79,6 +80,10 @@ class FeedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feed_params
-      params.require(:feed).permit(:name, :notes, :stage_feed_url, :production_feed_url, :production_start_date, :production_end_date, :company_id, :feed_status_id, :feed_frequency_id, :feed_type_id)
+      params.require(:feed).permit(:name, :notes, :stage_feed_url, :production_feed_url,
+        :production_start_date, :production_end_date, :company_id, :feed_status_id,
+        :feed_frequency_id, :feed_type_id, :transaction_type, :sent_to_data_rail,
+        :enhanced_carrier_status, :data_rail_api_key, :data_rail_password, :data_rail_queue_priority,
+        :data_view_username, :data_view_password, :partner, :split_by_data_rail, :contact_id)
     end
 end

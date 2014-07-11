@@ -5,8 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-user = CreateAdminService.new.call
-puts 'CREATED ADMIN USER: ' << user.email
+# user = CreateAdminService.new.call
+# puts 'CREATED ADMIN USER: ' << user.email
 
 states = {
       "Alabama" => "AL",
@@ -117,7 +117,8 @@ types = [
   "Commission",
   "License & Appointment",
   "Two-Way Messaging",
-  "App Upload"
+  "App Upload",
+  "Partner Connections"
 ]
 
 types.each do |type|

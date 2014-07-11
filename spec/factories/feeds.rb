@@ -12,6 +12,17 @@ FactoryGirl.define do
     feed_status_id 1
     feed_frequency_id 1
     feed_type_id 1
+    transaction_type "1125"
+    sent_to_data_rail true
+    enhanced_carrier_status false
+    data_rail_api_key "12345abc"
+    data_rail_password "verysecurepassword"
+    data_rail_queue_priority 1
+    data_view_username "test_user"
+    data_view_password "verysecurepassword"
+    partner { Faker::Company.name }
+    split_by_data_rail true
+    contact_id 1
   end
 
   factory :minimal_feed, class: Feed do
