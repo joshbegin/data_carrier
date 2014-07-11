@@ -79,6 +79,13 @@ describe "ParentCompanies" do
       expect(page).to have_selector('h3',     text: 'Parent Companies')
     end
 
+    it "should take me back when I click the Back button from the Show page" do
+      visit parent_companies_path
+      click_link(@parent_company.name)
+      click_link("Back")
+      expect(current_path).to eq(parent_companies_path)
+    end
+
     it { is_expected.to have_link('Parent Companies', href: parent_companies_path) }
   end
 

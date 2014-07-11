@@ -66,6 +66,7 @@ class ParentCompaniesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to parent_companies_url }
       format.json { head :no_content }
+      format.js
     end
   end
 

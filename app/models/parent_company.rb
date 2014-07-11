@@ -1,7 +1,7 @@
 class ParentCompany < ActiveRecord::Base
   has_paper_trail
 
-  has_many :companies
+  has_many :companies, dependent: :restrict_with_error # raises ActiveRecord::DeleteRestrictionError
 
   validates :name, presence: true,
                   uniqueness: true

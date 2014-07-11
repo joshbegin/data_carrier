@@ -75,6 +75,13 @@ describe "Companies" do
       expect(page).to have_text(@minimal_company.name)
     end
 
+    it "should take me back when I click the Back button from the Show page" do
+      visit companies_path
+      click_link(@company.name)
+      click_link("Back")
+      expect(current_path).to eq(companies_path)
+    end
+
     it { is_expected.to have_link('Companies', href: companies_path) }
   end
 

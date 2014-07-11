@@ -146,4 +146,4 @@
     .col-md-12
       .well
         = link_to 'Edit', edit_feed_path(@feed), class: "btn btn-primary" if current_user.admin?
-        = link_to 'Back', feeds_path, class: "btn btn-default"
+        = link_to 'Back', :back, class: "btn btn-default"

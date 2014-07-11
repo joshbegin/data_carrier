@@ -33,7 +33,7 @@
     .col-md-5
       .well
         = link_to 'Edit', edit_parent_company_path(@parent_company), class: "btn btn-primary" if current_user.admin?
-        = link_to 'Back', parent_companies_path, class: "btn btn-default"
+        = link_to 'Back', :back, class: "btn btn-default"
 
   .row
     .col-md-10

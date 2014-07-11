@@ -18,11 +18,11 @@
               %th
           %tbody
             - @parent_companies.each do |parent_company|
-              %tr
+              = content_tag_for(:tr, parent_company) do
                 %td= link_to "#{parent_company.name}", parent_company
                 %td= parent_company.additional_name
                 %td= parent_company.companies.count
                 %td= link_to "Edit", edit_parent_company_path(parent_company), class: "btn btn-xs btn-link" if current_user && current_user.admin?
-                %td= link_to "Delete", parent_company, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" if current_user && current_user.admin?
+                %td= link_to "Delete", parent_company, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" if current_user && current_user.admin? && parent_company.companies.empty?
       %br/
       = link_to "Add Parent Company", new_parent_company_path, class: "btn btn-primary" if current_user && current_user.admin?

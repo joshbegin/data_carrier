@@ -71,6 +71,13 @@ describe "Feeds" do
       expect(page).to have_text(@minimal_feed.name)
     end
 
+    it "should take me back when I click the Back button from the Show page" do
+      visit feeds_path
+      click_link(@feed.name)
+      click_link("Back")
+      expect(current_path).to eq(feeds_path)
+    end
+
     it { is_expected.to have_link('Feeds', href: feeds_path) }
   end
 
