@@ -111,7 +111,7 @@ end
 
 puts "#{FeedStatus.count} types of feed statuses"
 
-types = [
+feed_types = [
   "Pending",
   "Inforce",
   "Commission",
@@ -121,8 +121,38 @@ types = [
   "Partner Connections"
 ]
 
-types.each do |type|
+feed_types.each do |type|
   FeedType.create(name: type)
 end
 
 puts "#{FeedType.count} types of feed types"
+
+transmission_types = [
+  "FTP",
+  "SFTP",
+  "FTPS",
+  "REST Web Service",
+  "SOAP Web Service",
+  "Local Directory",
+  "Database"
+]
+
+transmission_types.each do |f|
+  TransmissionType.create(name: f)
+end
+
+puts "#{TransmissionType.count} transmission types created"
+
+system_types = [
+  "DataRail",
+  "Carrier",
+  "AMS",
+  "iGO",
+  "Partner"
+]
+
+system_types.each do |f|
+  SystemType.create(name: f)
+end
+
+puts "#{SystemType.count} system types created"

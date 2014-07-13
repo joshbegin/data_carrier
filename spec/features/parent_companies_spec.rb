@@ -14,26 +14,32 @@ describe "ParentCompanies" do
 
     it "should be able to access Parent Companies (index) page" do
       visit parent_companies_path
-
       expect(page).to have_selector('h3',    text: 'Parent Companies')
     end
 
     it "should be able to view show pages" do
       visit parent_company_path(@parent_company)
-
       expect(page).to have_selector('h3',     text: "#{@parent_company.name} Details")
     end
 
     it "should be able to edit Parent Companies" do
       visit edit_parent_company_path(@parent_company)
-
-      expect(page).to have_selector('h3',     text: "Edit #{@parent_company.name}")
+      fill_in "Name",                             with: "Company DEF"
+      click_button("Update Parent company")
+      expect(page).to have_link("Company DEF")
     end
 
-    it "should be able to add Parent Companies" do
+    it "should be able to visit add Parent Companies page" do
       visit new_parent_company_path
-
       expect(page).to have_selector('h3',     text: 'New Parent Company')
+    end
+
+    it "should be able to add new Parent Company" do
+      visit new_parent_company_path
+      fill_in "Name",                             with: "Company ABC"
+      fill_in "Additional Name",                  with: "Addl Name"
+      click_button("Create Parent company")
+      expect(page).to have_link("Company ABC")
     end
 
     it "should display show page when parent company has minimal fields" do

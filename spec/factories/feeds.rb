@@ -22,7 +22,10 @@ FactoryGirl.define do
     data_view_password "verysecurepassword"
     partner { Faker::Company.name }
     split_by_data_rail true
-    contact_id 1
+    source_system_type_id 1
+    destination_system_type_id 1
+    source_transmission_type_id 1
+    destination_transmission_type_id 1
   end
 
   factory :minimal_feed, class: Feed do

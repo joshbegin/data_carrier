@@ -14,37 +14,37 @@
   .form-group
     = f.label :company_id, class: "col-sm-4 control-label"
     .col-sm-8
-      = collection_select(:feed, :company_id, Company.all, :id, :name, prompt: "Select Company")
+      = collection_select(:feed, :company_id, Company.all, :id, :name, { prompt: "Select Company" }, { class: 'form-control' })
   .form-group
-    = f.label :feed_type_id, class: "col-sm-4 control-label"
+    = f.label :feed_type_id, "Feed Type", class: "col-sm-4 control-label"
     .col-sm-8
-      = collection_select(:feed, :feed_type_id, FeedType.all, :id, :name, prompt: "Select Feed Type")
+      = collection_select(:feed, :feed_type_id, FeedType.all, :id, :name, { prompt: "Select Feed Type" }, { class: "form-control" })
   .form-group
-    = f.label :transaction_type, class: "col-sm-4 control-label"
+    = f.label :transaction_type, "Transaction Type", class: "col-sm-4 control-label"
     .col-sm-8
       = f.text_field :transaction_type, placeholder: "ACORD Transaction Type", class: "form-control"
   .form-group
-    = f.label :feed_frequency_id, class: "col-sm-4 control-label"
+    = f.label :feed_frequency_id, "Feed Frequency", class: "col-sm-4 control-label"
     .col-sm-8
-      = collection_select(:feed, :feed_frequency_id, FeedFrequency.all, :id, :name, prompt: "Select Feed Frequency")
+      = collection_select(:feed, :feed_frequency_id, FeedFrequency.all, :id, :name, { prompt: "Select Feed Frequency" }, { class: "form-control" })
   .form-group
-    = f.label :feed_status_id, class: "col-sm-4 control-label"
+    = f.label :feed_status_id, "Feed Status", class: "col-sm-4 control-label"
     .col-sm-8
-      = collection_select(:feed, :feed_status_id, FeedStatus.all, :id, :name, prompt: "Select Feed Status")
+      = collection_select(:feed, :feed_status_id, FeedStatus.all, :id, :name, { prompt: "Select Feed Status" }, { class: "form-control" })
   .form-group
-    = f.label :stage_feed_url, class: "col-sm-4 control-label"
+    = f.label :stage_feed_url, "Stage Feed URL", class: "col-sm-4 control-label"
     .col-sm-8
       = f.url_field :stage_feed_url, placeholder: "http://...", class: "form-control"
   .form-group
-    = f.label :production_feed_url, class: "col-sm-4 control-label"
+    = f.label :production_feed_url, "Production Feed URL", class: "col-sm-4 control-label"
     .col-sm-8
       = f.url_field :production_feed_url, placeholder: "http://...", class: "form-control"
   .form-group
-    = f.label :production_start_date, class: "col-sm-4 control-label"
+    = f.label :production_start_date, "Production Start Date", class: "col-sm-4 control-label"
     .col-sm-8
       = f.date_field :production_start_date
   .form-group
-    = f.label :production_end_date, class: "col-sm-4 control-label"
+    = f.label :production_end_date, "Production End Date", class: "col-sm-4 control-label"
     .col-sm-8
       = f.date_field :production_end_date
   .form-group
@@ -70,11 +70,11 @@
     .col-sm-8
       = f.number_field :data_rail_queue_priority, class: "form-control"
   .form-group
-    = f.label :data_view_username, "DataRail Username", class: "col-sm-4 control-label"
+    = f.label :data_view_username, "DataView Username", class: "col-sm-4 control-label"
     .col-sm-8
       = f.text_field :data_view_username, class: "form-control"
   .form-group
-    = f.label :data_view_password, "DataRail Password", class: "col-sm-4 control-label"
+    = f.label :data_view_password, "DataView Password", class: "col-sm-4 control-label"
     .col-sm-8
       = f.text_field :data_view_password, class: "form-control"
   .form-group

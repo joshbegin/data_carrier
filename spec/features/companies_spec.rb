@@ -23,19 +23,41 @@ describe "Companies" do
     end
 
     it "should be able to edit Companies" do
-      visit edit_company_path(@company)
-      expect(current_path).to eq(edit_company_path(@company))
-    end
+          visit edit_company_path(@company)
+          fill_in "Name",                             with: "Company DEF"
+          click_button("Update Company")
+          expect(page).to have_link("Company DEF")
+        end
 
-    it "should be able to add Companies" do
+    it "should be able to visit add Companies page" do
       visit new_company_path
       expect(page).to have_selector('h3',     text: 'New Company')
+    end
+
+    it "should be able to add new Company" do
+      @parent_company = FactoryGirl.create(:parent_company)
+      visit new_company_path
+      fill_in "Name",                             with: "Company ABC"
+      fill_in "Additional Name",                  with: "Addl name"
+      select(@parent_company.name,                from: 'Parent company')
+      select(CompanyType.first.name,              from: 'Company type')
+      select(State.first.name,                    from: 'State')
+      fill_in "Address Line 1",                   with: "Address Line 1"
+      fill_in "Address Line 2",                   with: "Address Line 2"
+      fill_in "Address Line 3",                   with: "Address Line 3"
+      fill_in "City",                             with: "City"
+      fill_in "Zip",                              with: "Zip"
+      fill_in "URL",                              with: "http://www.google.com"
+      fill_in "NAIC Code",                        with: "61492"
+      fill_in "AI Carrier Code",                  with: "64"
+      click_button("Create Company")
+      expect(page).to have_link("Company ABC")
     end
 
     it "should display the correct feeds" do
       @feed = FactoryGirl.create(:feed)
       visit company_path(@company)
-      expect(page).to have_text(@feed.name)
+      expect(page).to have_link(@feed.name)
     end
 
     it { is_expected.to have_link('Companies', href: companies_path) }

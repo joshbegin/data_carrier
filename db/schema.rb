@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140710002211) do
+ActiveRecord::Schema.define(version: 20140712193457) do
 
   create_table "companies", force: true do |t|
     t.integer  "parent_company_id"
@@ -79,7 +79,11 @@ ActiveRecord::Schema.define(version: 20140710002211) do
     t.string   "data_view_password"
     t.string   "partner"
     t.boolean  "split_by_data_rail"
-    t.integer  "contact_id"
+    t.integer  "source_system_type_id"
+    t.integer  "destination_system_type_id"
+    t.integer  "source_transmission_type_id"
+    t.integer  "destination_transmission_type_id"
+    t.integer  "parent_feed_id"
   end
 
   create_table "parent_companies", force: true do |t|
@@ -89,11 +93,24 @@ ActiveRecord::Schema.define(version: 20140710002211) do
     t.datetime "updated_at"
   end
 
+  add_index "parent_companies", ["additional_name"], name: "index_parent_companies_on_additional_name", unique: true
   add_index "parent_companies", ["name"], name: "index_parent_companies_on_name", unique: true
 
   create_table "states", force: true do |t|
     t.string   "name"
     t.string   "abbreviation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "system_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transmission_types", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

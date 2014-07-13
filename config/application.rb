@@ -8,6 +8,11 @@ Bundler.require(*Rails.groups)
 
 module DataCarrier
   class Application < Rails::Application
+    # Enable rack-dev-mark
+    config.rack_dev_mark.enable = !Rails.env.production?
+    # Customize themes if you want to do so
+    # config.rack_dev_mark.theme = [:title, :github_fork_ribbon]
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

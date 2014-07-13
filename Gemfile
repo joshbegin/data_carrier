@@ -18,6 +18,7 @@ gem 'pundit'
 gem 'thin'
 gem "brakeman", :require => false
 gem 'paper_trail'
+gem "rack-dev-mark"
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'better_errors'
