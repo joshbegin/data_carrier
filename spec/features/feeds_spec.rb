@@ -30,6 +30,13 @@ describe "Feeds" do
       expect(page).to have_text("Feed 123")
     end
 
+    it "should raise an error when editing with a missing field" do
+      visit edit_feed_path(@feed)
+      fill_in "Name",                             with: ""
+      click_button("Update Feed")
+      expect(page).to have_selector("li", "Name can't be blank")
+    end
+
     it "should be able to visit Add Feeds page" do
       visit new_feed_path
       expect(current_path).to eq(new_feed_path)
@@ -60,6 +67,20 @@ describe "Feeds" do
       check("Split by DataRail?")
       click_button("Create Feed")
       expect(page).to have_text(@feed2.name)
+    end
+
+    it "should raise an error when adding with a missing Name" do
+      visit new_feed_path
+      click_button("Create Feed")
+      expect(page).to have_selector('li', "Name can't be blank")
+    end
+
+    it "should be able to delete a Feed" do
+      visit feeds_path
+      within('tr', text: @feed.name) do
+        click_link("Delete")
+      end
+      expect(page).to_not have_link(@feed.name)
     end
 
     it { is_expected.to have_link('Feeds', href: feeds_path) }

@@ -23,11 +23,18 @@ describe "Companies" do
     end
 
     it "should be able to edit Companies" do
-          visit edit_company_path(@company)
-          fill_in "Name",                             with: "Company DEF"
-          click_button("Update Company")
-          expect(page).to have_link("Company DEF")
-        end
+      visit edit_company_path(@company)
+      fill_in "Name",                             with: "Company DEF"
+      click_button("Update Company")
+      expect(page).to have_link("Company DEF")
+    end
+
+    it "should raise an error when editing with a missing field" do
+      visit edit_company_path(@company)
+      fill_in "Name",                             with: ""
+      click_button("Update Company")
+      expect(page).to have_selector("li", "Name can't be blank")
+    end
 
     it "should be able to visit add Companies page" do
       visit new_company_path
@@ -52,6 +59,29 @@ describe "Companies" do
       fill_in "AI Carrier Code",                  with: "64"
       click_button("Create Company")
       expect(page).to have_link("Company ABC")
+    end
+
+    it "should raise an error when adding with a missing Name" do
+      visit new_company_path
+      click_button("Create Company")
+      expect(page).to have_selector('li', "Name can't be blank")
+    end
+
+    it "should be able to delete a Company" do
+      visit companies_path
+      within('tr', text: @company.name) do
+        click_link("Delete")
+      end
+      expect(page).to_not have_link(@company.name)
+    end
+
+    it "should not be able to delete a company if it has child feeds" do
+      @company2 = FactoryGirl.create(:company)
+      @feed = FactoryGirl.create(:feed)
+      visit companies_path
+      within('tr', text: @company.name) do
+        expect(page).to_not have_link("Delete")
+      end
     end
 
     it "should display the correct feeds" do

@@ -24,6 +24,28 @@ describe "All Users" do
     signin(@user)
     expect(page).to_not have_selector('em', text: "Signed in as")
   end
+
+  it "should be able to access own /show page" do
+    signin(@user)
+    visit user_path(@user)
+    expect(current_path).to eq(user_path(@user))
+  end
+
+  it "should be able to edit own profile" do
+    signin(@user)
+    visit edit_user_registration_path(@user)
+    fill_in "Name", with: "New Name"
+    fill_in "Current password", with: "Password"
+    click_button("Update")
+    expect(page).to have_text("New Name")
+  end
+
+  it "should be able to delete themselves" do
+    signin(@user)
+    visit edit_user_registration_path(@user)
+    click_link("Cancel my account")
+    expect(page).to have_text("Bye! Your account was successfully cancelled. We hope to see you again soon.")
+  end
 end
 
 describe "Non-admin Users" do
@@ -38,6 +60,12 @@ describe "Non-admin Users" do
 
     it "should not see Users link in navigation" do
       expect(page).to_not have_link('Users', href: users_path)
+    end
+
+    it "should not be able to access other /show pages" do
+      @user2 = FactoryGirl.create(:user)
+      visit user_path(@user2)
+      expect(current_path).to_not eq(user_path(@user2))
     end
 
     it "should not be able to access /users page" do
@@ -63,13 +91,32 @@ describe "Admin Users" do
     expect(page).to have_selector('h3', text: 'Users')
   end
 
+  it "should be able to access other /show pages" do
+    @user2 = FactoryGirl.create(:user)
+    visit user_path(@user2)
+    expect(current_path).to eq(user_path(@user2))
+  end
+
   it "should be able to change user roles" do
     expect(page).to have_button('Change Role')
   end
 
-  it "should be able to delete users"
+  it "should be able to delete users" do
+    within('tr', text: @user.email) do
+      click_link("Delete user")
+    end
+    expect(page).to_not have_link(@user.email)
+  end
 
-  it "should not be able to change their own role"
+  it "should not be able to change their own role" do
+    within('tr', text: @admin.email) do
+      expect(page).to_not have_link("Change Role")
+    end
+  end
 
-  it "should not be able to delete themselves from the index page"
+  it "should not be able to delete themselves from the index page" do
+    within('tr', text: @admin.email) do
+      expect(page).to_not have_link("Delete user")
+    end
+  end
 end

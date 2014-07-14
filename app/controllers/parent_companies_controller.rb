@@ -37,10 +37,10 @@ class ParentCompaniesController < ApplicationController
     respond_to do |format|
       if @parent_company.save
         format.html { redirect_to @parent_company, notice: 'Parent company was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @parent_company }
+        #format.json { render action: 'show', status: :created, location: @parent_company }
       else
         format.html { render action: 'new' }
-        format.json { render json: @parent_company.errors, status: :unprocessable_entity }
+        #format.json { render json: @parent_company.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,10 +51,10 @@ class ParentCompaniesController < ApplicationController
     respond_to do |format|
       if @parent_company.update(parent_company_params)
         format.html { redirect_to @parent_company, notice: 'Parent company was successfully updated.' }
-        format.json { render action: 'show', status: :ok, location: @parent_company }
+        #format.json { render action: 'show', status: :ok, location: @parent_company }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @parent_company.errors, status: :unprocessable_entity }
+        #format.json { render json: @parent_company.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,7 +65,7 @@ class ParentCompaniesController < ApplicationController
     @parent_company.destroy
     respond_to do |format|
       format.html { redirect_to parent_companies_url }
-      format.json { head :no_content }
+      #format.json { head :no_content }
       format.js
     end
   end

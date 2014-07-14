@@ -29,6 +29,13 @@ describe "ParentCompanies" do
       expect(page).to have_link("Company DEF")
     end
 
+    it "should raise an error when editing with a missing Name" do
+      visit edit_parent_company_path(@parent_company)
+      fill_in "Name",                             with: ""
+      click_button("Update Parent company")
+      expect(page).to have_selector("li", "Name can't be blank")
+    end
+
     it "should be able to visit add Parent Companies page" do
       visit new_parent_company_path
       expect(page).to have_selector('h3',     text: 'New Parent Company')
@@ -40,6 +47,12 @@ describe "ParentCompanies" do
       fill_in "Additional Name",                  with: "Addl Name"
       click_button("Create Parent company")
       expect(page).to have_link("Company ABC")
+    end
+
+    it "should raise an error when adding with a missing Name" do
+      visit new_parent_company_path
+      click_button("Create Parent company")
+      expect(page).to have_selector('li', "Name can't be blank")
     end
 
     it "should display show page when parent company has minimal fields" do
