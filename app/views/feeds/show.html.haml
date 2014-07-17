@@ -111,6 +111,18 @@
               %dt
                 %b Split by DataRail?
               %dd= @feed.try(:split_by_data_rail)
+              %dt
+                %b Source System Type:
+              %dd= @feed.try(:source_system_type).try(:name)
+              %dt
+                %b Destination System Type:
+              %dd= @feed.try(:destination_system_type).try(:name)
+              %dt
+                %b Source Transmission Type:
+              %dd= @feed.try(:source_transmission_type).try(:name)
+              %dt
+                %b Destination Transmission Type:
+              %dd= @feed.try(:destination_transmission_type).try(:name)
   .row
     .col-md-6
       .panel.panel-default

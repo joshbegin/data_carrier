@@ -14,7 +14,7 @@ FactoryGirl.define do
     feed_type_id 1
     transaction_type "1125"
     sent_to_data_rail true
-    enhanced_carrier_status false
+    enhanced_carrier_status true
     data_rail_api_key "12345abc"
     data_rail_password "verysecurepassword"
     data_rail_queue_priority 1
@@ -26,6 +26,7 @@ FactoryGirl.define do
     destination_system_type_id 1
     source_transmission_type_id 1
     destination_transmission_type_id 1
+    parent_feed_id 2
   end
 
   factory :minimal_feed, class: Feed do

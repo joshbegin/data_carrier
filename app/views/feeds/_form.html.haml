@@ -32,6 +32,22 @@
     .col-sm-8
       = collection_select(:feed, :feed_status_id, FeedStatus.all, :id, :name, { prompt: "Select Feed Status" }, { class: "form-control" })
   .form-group
+    = f.label :source_system_type_id, "Source System Type", class: "col-sm-4 control-label"
+    .col-sm-8
+      = collection_select(:feed, :source_system_type_id, SystemType.all, :id, :name, { prompt: "Select System Type" }, { class: "form-control" })
+  .form-group
+    = f.label :destination_system_type_id, "Destination System Type", class: "col-sm-4 control-label"
+    .col-sm-8
+      = collection_select(:feed, :destination_system_type_id, SystemType.all, :id, :name, { prompt: "Select System Type" }, { class: "form-control" })
+  .form-group
+    = f.label :source_transmission_type_id, "Source Transmission Type", class: "col-sm-4 control-label"
+    .col-sm-8
+      = collection_select(:feed, :source_transmission_type_id, TransmissionType.all, :id, :name, { prompt: "Select Transmission Type" }, { class: "form-control" })
+  .form-group
+    = f.label :destination_transmission_type_id, "Destination Transmission Type", class: "col-sm-4 control-label"
+    .col-sm-8
+      = collection_select(:feed, :destination_transmission_type_id, TransmissionType.all, :id, :name, { prompt: "Select Transmission Type" }, { class: "form-control" })
+  .form-group
     = f.label :stage_feed_url, "Stage Feed URL", class: "col-sm-4 control-label"
     .col-sm-8
       = f.url_field :stage_feed_url, placeholder: "http://...", class: "form-control"

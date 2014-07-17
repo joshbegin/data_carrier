@@ -16,5 +16,10 @@ describe ParentCompany do
     is_expected.to validate_uniqueness_of(:name)
   end
 
+  it "should have a recently_updated method" do
+    FactoryGirl.create_list(:parent_company, 3)
+    expect(ParentCompany.recently_updated(5).count).to eq(3)
+  end
+
   it { should have_many(:companies) }
 end

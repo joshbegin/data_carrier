@@ -1,6 +1,16 @@
 require 'spec_helper'
 
-describe "When not logged in"
+describe "When not logged in" do
+  it "should allow me to create an account" do
+    visit new_user_registration_path
+    fill_in "Name",                     with: "Test User"
+    fill_in "Email",                    with: "test@test.com"
+    fill_in "Password",                 with: "Password"
+    fill_in "Password confirmation",    with: "Password"
+    click_button "Sign up"
+    expect(page).to have_text("Welcome! You have signed up successfully.")
+  end
+end
 
 describe "All Users" do
   before :each do

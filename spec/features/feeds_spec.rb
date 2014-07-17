@@ -45,26 +45,29 @@ describe "Feeds" do
     it "should be able to add new Feeds" do
       @feed2 = FactoryGirl.build(:feed)
       visit new_feed_path
-      fill_in "Name",                             with: @feed2.name
-      fill_in "Notes",                            with: @feed2.notes
-      fill_in "Stage Feed URL",                   with: @feed2.stage_feed_url
-      fill_in "Production Feed URL",              with: @feed2.production_feed_url
-      fill_in "Production Start Date",            with: @feed2.production_start_date
-      fill_in "Production End Date",              with: @feed2.production_end_date
-      select(@company.name,                       from: 'Company')
-      select(FeedStatus.first.name,               from: 'Feed Status')
-      select(FeedFrequency.first.name,            from: 'Feed Frequency')
-      select(FeedType.first.name,                 from: 'Feed Type')
-      fill_in "Transaction Type",                 with: @feed2.transaction_type
+      fill_in "Name",                                                 with: @feed2.name
+      fill_in "Notes",                                                with: @feed2.notes
+      fill_in "Stage Feed URL",                                       with: @feed2.stage_feed_url
+      fill_in "Production Feed URL",                                  with: @feed2.production_feed_url
+      fill_in "Production Start Date",                                with: @feed2.production_start_date
+      fill_in "Production End Date",                                  with: @feed2.production_end_date
+      select(Company.find(@feed2.company_id).name,                    from: 'Company')
+      select(FeedStatus.find(@feed2.feed_status_id).name,             from: 'Feed Status')
+      select(FeedFrequency.find(@feed2.feed_frequency_id).name,       from: 'Feed Frequency')
+      select(FeedType.find(@feed2.feed_type_id).name,                 from: 'Feed Type')
+      fill_in "Transaction Type",                                     with: @feed2.transaction_type
       check("Sent to DataRail?")
       check("Enhanced Carrier Status?")
-      fill_in "DataRail API Key",                 with: @feed2.data_rail_api_key
-      fill_in "DataRail Password",                with: @feed2.data_rail_password
-      fill_in "DataRail Queue Priority",          with: @feed2.data_rail_queue_priority
-      fill_in "DataView Username",                with: @feed2.data_view_username
-      fill_in "DataView Password",                with: @feed2.data_view_password
-      fill_in "Partner (Partner Connections)",    with: @feed2.partner
+      fill_in "DataRail API Key",                                     with: @feed2.data_rail_api_key
+      fill_in "DataRail Password",                                    with: @feed2.data_rail_password
+      fill_in "DataRail Queue Priority",                              with: @feed2.data_rail_queue_priority
+      fill_in "DataView Username",                                    with: @feed2.data_view_username
+      fill_in "DataView Password",                                    with: @feed2.data_view_password
+      fill_in "Partner (Partner Connections)",                        with: @feed2.partner
       check("Split by DataRail?")
+      select(SystemType.find(@feed2.source_system_type_id).name,      from: "Source System Type")
+      select(SystemType.find(@feed2.destination_system_type_id).name, from: "Destination System Type")
+
       click_button("Create Feed")
       expect(page).to have_text(@feed2.name)
     end
@@ -119,6 +122,35 @@ describe "Feeds" do
       @minimal_feed = FactoryGirl.create(:minimal_feed)
       visit feed_path(@minimal_feed)
       expect(page).to have_text(@minimal_feed.name)
+    end
+
+    it "should be able to see every field for a feed" do
+      visit feed_path(@feed)
+      expect(page).to have_text(@feed.name)
+      expect(page).to have_text(@feed.try(:notes))
+      expect(page).to have_text(@feed.try(:stage_feed_url))
+      expect(page).to have_text(@feed.try(:production_feed_url))
+      expect(page).to have_text(@feed.try(:production_start_date).strftime("%m-%d-%Y"))
+      expect(page).to have_text(@feed.try(:production_end_date).strftime("%m-%d-%Y"))
+      expect(page).to have_text(@feed.try(:company).try(:name))
+      expect(page).to have_text(@feed.try(:feed_status).try(:name))
+      expect(page).to have_text(@feed.try(:feed_frequency).try(:name))
+      expect(page).to have_text(@feed.try(:feed_type).try(:name))
+      expect(page).to have_text(@feed.try(:transaction_type))
+      expect(page).to have_text(@feed.try(:sent_to_data_rail))
+      expect(page).to have_text(@feed.try(:enhanced_carrier_status))
+      expect(page).to have_text(@feed.try(:data_rail_api_key))
+      expect(page).to have_text(@feed.try(:data_rail_password))
+      expect(page).to have_text(@feed.try(:data_rail_queue_priority))
+      expect(page).to have_text(@feed.try(:data_view_username))
+      expect(page).to have_text(@feed.try(:data_view_password))
+      expect(page).to have_text(@feed.try(:partner))
+      expect(page).to have_text(@feed.try(:split_by_data_rail))
+      expect(page).to have_text(@feed.try(:source_system_type).try(:name))
+      expect(page).to have_text(@feed.try(:destination_system_type).try(:name))
+      expect(page).to have_text(@feed.try(:source_transmission_type).try(:name))
+      expect(page).to have_text(@feed.try(:destination_transmission_type).try(:name))
+      expect(page).to have_text(@feed.try(:parent_feed).try(:name))
     end
 
     it "should take me back when I click the Back button from the Show page" do

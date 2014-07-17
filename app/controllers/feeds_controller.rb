@@ -84,6 +84,8 @@ class FeedsController < ApplicationController
         :production_start_date, :production_end_date, :company_id, :feed_status_id,
         :feed_frequency_id, :feed_type_id, :transaction_type, :sent_to_data_rail,
         :enhanced_carrier_status, :data_rail_api_key, :data_rail_password, :data_rail_queue_priority,
-        :data_view_username, :data_view_password, :partner, :split_by_data_rail, :contact_id)
+        :data_view_username, :data_view_password, :partner, :split_by_data_rail,
+        :source_system_type_id, :destination_system_type_id, :source_transmission_type_id,
+        :destination_transmission_type_id)
     end
 end

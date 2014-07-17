@@ -7,7 +7,10 @@ describe Feed do
   it { is_expected.to validate_presence_of(:feed_status_id) }
   it { is_expected.to validate_presence_of(:feed_type_id) }
 
-  it "should have a recently_updated method"
+  it "should have a recently_updated method" do
+    FactoryGirl.create_list(:feed, 3)
+    expect(Feed.recently_updated(5).count).to eq(3)
+  end
 
   it { should belong_to(:feed_frequency) }
   it { should belong_to(:feed_status) }
