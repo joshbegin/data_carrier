@@ -13,7 +13,28 @@ class Feed < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :company_id, :feed_type_id, :feed_status_id, presence: true
+  validate :validate_parent_feed, :validate_parent_feed_company
 
   scope :recently_updated, ->(num) { order('updated_at DESC').limit(num) }
   scope :sort_by_company, -> { order('companies.name', 'feeds.name').includes(:company) }
+
+  def name_with_company
+    company.name + " - " + name
+  end
+
+  private
+
+    def validate_parent_feed
+      if self.try(:parent_feed) == self
+        errors.add(:parent_feed_id, "can't be equal to Feed")
+      end
+    end
+
+    def validate_parent_feed_company
+      unless self.parent_feed_id.nil?
+        if self.parent_feed.company != self.company
+          errors.add(:parent_feed_id, "must have the same Company")
+        end
+      end
+    end
 end

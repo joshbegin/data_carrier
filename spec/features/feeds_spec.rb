@@ -72,6 +72,19 @@ describe "Feeds" do
       expect(page).to have_text(@feed2.name)
     end
 
+    it "should be able to choose Parent Feed" do
+      @feed2 = FactoryGirl.create(:feed)
+      @feed3 = FactoryGirl.build(:feed)
+      visit new_feed_path
+      fill_in "Name",                                                 with: @feed3.name
+      select(Company.find(@feed3.company_id).name,                    from: 'Company')
+      select(FeedStatus.find(@feed3.feed_status_id).name,             from: 'Feed Status')
+      select(FeedType.find(@feed3.feed_type_id).name,                 from: 'Feed Type')
+      select(@feed2.name_with_company,                               from: 'Parent Feed')
+      click_button("Create Feed")
+      expect(page).to have_text(@feed3.name)
+    end
+
     it "should raise an error when adding with a missing Name" do
       visit new_feed_path
       click_button("Create Feed")
@@ -125,6 +138,7 @@ describe "Feeds" do
     end
 
     it "should be able to see every field for a feed" do
+      @feed2 = FactoryGirl.create(:feed)
       visit feed_path(@feed)
       expect(page).to have_text(@feed.name)
       expect(page).to have_text(@feed.try(:notes))

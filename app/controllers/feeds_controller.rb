@@ -86,6 +86,6 @@ class FeedsController < ApplicationController
         :enhanced_carrier_status, :data_rail_api_key, :data_rail_password, :data_rail_queue_priority,
         :data_view_username, :data_view_password, :partner, :split_by_data_rail,
         :source_system_type_id, :destination_system_type_id, :source_transmission_type_id,
-        :destination_transmission_type_id)
+        :destination_transmission_type_id, :parent_feed_id)
     end
 end

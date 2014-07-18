@@ -12,6 +12,26 @@ describe Feed do
     expect(Feed.recently_updated(5).count).to eq(3)
   end
 
+  it "should have a name_with_company method" do
+    @feed = FactoryGirl.create(:feed)
+    FactoryGirl.create(:company)
+    expect(@feed.name_with_company).to eq("#{@feed.company.name} - #{@feed.name}")
+  end
+
+  it "should not allow the Parent Feed to be the Feed" do
+    @feed = FactoryGirl.create(:feed)
+    @feed.parent_feed_id = @feed.id
+    expect(@feed.save).to eq(false)
+  end
+
+  it "should ensure Parent Feed Company is the same as Feed Company" do
+    @feed = FactoryGirl.create(:feed)
+    @parent = FactoryGirl.create(:feed, company_id: 2)
+    FactoryGirl.create(:company)
+    @feed.parent_feed_id = @parent.id
+    expect(@feed.save).to eq(false)
+  end
+
   it { should belong_to(:feed_frequency) }
   it { should belong_to(:feed_status) }
   it { should belong_to(:feed_type) }

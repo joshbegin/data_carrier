@@ -41,6 +41,9 @@
               %dt
                 %b Feed Status:
               %dd= @feed.feed_status.name
+              %dt
+                %b Feed Frequency:
+              %dd= @feed.feed_frequency.try(:name)
     .col-md-6
       .panel.panel-default
         .panel-heading
@@ -51,8 +54,17 @@
           .panel-body
             %dl.dl-horizontal
               %dt
-                %b Feed Frequency:
-              %dd= @feed.feed_frequency.try(:name)
+                %b Source System Type:
+              %dd= @feed.try(:source_system_type).try(:name)
+              %dt
+                %b= link_to "Dest. System Type:", "", title: 'Destination System Type', rel: 'tooltip'
+              %dd= @feed.try(:destination_system_type).try(:name)
+              %dt
+                %b= link_to "Source Trans. Type:", "", title: 'Source Transmission Type', rel: 'tooltip'
+              %dd= @feed.try(:source_transmission_type).try(:name)
+              %dt
+                %b= link_to "Dest. Trans. Type:", "", title: 'Destination Transmission Type', rel: 'tooltip'
+              %dd= @feed.try(:destination_transmission_type).try(:name)
               %dt
                 %b Stage URL:
               %dd= link_to @feed.stage_feed_url, @feed.stage_feed_url, target: "_blank"
@@ -82,19 +94,19 @@
                 %b ECS?
               %dd= @feed.try(:enhanced_carrier_status)
               %dt
-                %b DataRail API Key
+                %b DataRail API Key:
               %dd= @feed.try(:data_rail_api_key)
               %dt
-                %b DataRail Password
+                %b DataRail Password:
               %dd= @feed.try(:data_rail_password)
               %dt
-                %b DR Queue Priority
+                %b DR Queue Priority:
               %dd= @feed.try(:data_rail_queue_priority)
               %dt
-                %b DataView Username
+                %b DataView Username:
               %dd= @feed.try(:data_view_username)
               %dt
-                %b DataView Password
+                %b DataView Password:
               %dd= @feed.try(:data_view_password)
     .col-md-6
       .panel.panel-default
@@ -112,17 +124,8 @@
                 %b Split by DataRail?
               %dd= @feed.try(:split_by_data_rail)
               %dt
-                %b Source System Type:
-              %dd= @feed.try(:source_system_type).try(:name)
-              %dt
-                %b Destination System Type:
-              %dd= @feed.try(:destination_system_type).try(:name)
-              %dt
-                %b Source Transmission Type:
-              %dd= @feed.try(:source_transmission_type).try(:name)
-              %dt
-                %b Destination Transmission Type:
-              %dd= @feed.try(:destination_transmission_type).try(:name)
+                %b Parent Feed:
+              %dd= "#{@feed.try(:parent_feed).try(:company).try(:name)} - #{@feed.try(:parent_feed).try(:name)}"
   .row
     .col-md-6
       .panel.panel-default
@@ -157,5 +160,5 @@
   .row
     .col-md-12
       .well
-        = link_to 'Edit', edit_feed_path(@feed), class: "btn btn-primary" if current_user.admin?
-        = link_to 'Back', :back, class: "btn btn-default"
+        = link_to 'Edit', edit_feed_path(@feed), title: 'Edit the current Feed', rel: 'tooltip', class: "btn btn-primary" if current_user.admin?
+        = link_to 'Back', :back, title: 'Back to Previous Page', rel: 'tooltip', class: "btn btn-default"

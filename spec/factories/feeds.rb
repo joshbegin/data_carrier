@@ -26,7 +26,6 @@ FactoryGirl.define do
     destination_system_type_id 1
     source_transmission_type_id 1
     destination_transmission_type_id 1
-    parent_feed_id 2
   end
 
   factory :minimal_feed, class: Feed do

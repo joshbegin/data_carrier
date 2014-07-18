@@ -8,6 +8,6 @@
         %li= link_to "Parent Companies", parent_companies_path
         %li.active= "Companies"
       %h3 Companies
-      = render 'companies/companies'
+      = render partial: 'companies/companies', locals: { companies: @companies }
       %br/
       = link_to "Add Company", new_company_path, class: "btn btn-primary" if current_user && current_user.admin?

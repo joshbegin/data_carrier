@@ -10,7 +10,7 @@
         %th
         %th
     %tbody
-      - @feeds.each do |feed|
+      - feeds.each do |feed|
         = content_tag_for(:tr, feed) do
           %td= link_to feed.name, feed
           %td= link_to feed.company.name, feed.company

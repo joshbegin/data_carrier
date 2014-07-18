@@ -9,6 +9,6 @@
         %li= link_to "Companies", companies_path
         %li.active= "Feeds"
       %h3 Feeds
-      = render 'feeds/feeds'
+      = render partial: 'feeds/feeds', locals: { feeds: @feeds }
       %br/
       = link_to "Add Feed", new_feed_path, class: "btn btn-primary" if current_user && current_user.admin?

@@ -43,6 +43,6 @@
             %a{"data-toggle" => "collapse", href: "#collapsePCTwo"}
               = "#{@parent_company.name} Child Companies"
         #collapsePCTwo.panel-collapse.collapse.in
-          = render 'companies/companies'
+          = render partial: 'companies/companies', locals: { companies: @companies }
         .panel-footer
           = link_to "Add Child", new_company_path(parent_company_id: @parent_company.id), class: "btn btn-primary btn-sm" if current_user && current_user.admin?
