@@ -116,3 +116,15 @@
           = render partial: 'feeds/feeds', locals: { feeds: @feeds }
         .panel-footer
           = link_to "Add Feed", new_feed_path(company_id: @company.id), class: "btn btn-primary btn-sm" if current_user && current_user.admin?
+
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseCompanySix"}
+              = "#{@company.name} Partner Connection Feeds"
+        #collapseCompanySix.panel-collapse.collapse.in
+          = render partial: 'feeds/feeds', locals: { feeds: @partner_connection_feeds }
+        .panel-footer
+          = link_to "Add Partner Connection Feed", new_feed_path(company_id: @company.id, destination_system_type_id: 5), class: "btn btn-primary btn-sm" if current_user && current_user.admin?

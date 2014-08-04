@@ -18,6 +18,13 @@ describe Feed do
     expect(@feed.name_with_company).to eq("#{@feed.company.name} - #{@feed.name}")
   end
 
+  it "should have a partner_connections method" do
+    FactoryGirl.create_list(:feed, 3)
+    @company = FactoryGirl.create(:company)
+    Feed.last.update_attributes(destination_system_type_id: 5)
+    expect(Feed.partner_connections(@company).count).to eq(1)
+  end
+
   it "should not allow the Parent Feed to be the Feed" do
     @feed = FactoryGirl.create(:feed)
     @feed.parent_feed_id = @feed.id

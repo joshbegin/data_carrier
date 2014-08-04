@@ -15,6 +15,7 @@ class Feed < ActiveRecord::Base
   validates :company_id, :feed_type_id, :feed_status_id, presence: true
   validate :validate_parent_feed, :validate_parent_feed_company
 
+  scope :partner_connections, ->(company) { where(company_id: company.id).where(destination_system_type_id: 5) }
   scope :recently_updated, ->(num) { order('updated_at DESC').limit(num) }
   scope :sort_by_company, -> { order('companies.name', 'feeds.name').includes(:company) }
 

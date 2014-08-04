@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find(params[:id])
     @feeds = @company.feeds
+    @partner_connection_feeds = Feed.partner_connections(@company)
   end
 
   # GET /companies/new
