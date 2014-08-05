@@ -111,7 +111,7 @@
         .panel-heading
           %h4.panel-title
             %a{"data-toggle" => "collapse", href: "#collapseCompanyFive"}
-              = "#{@company.name} Feeds"
+              = "#{@company.name} Feeds (excluding Partner Connections)"
         #collapseCompanyFive.panel-collapse.collapse.in
           = render partial: 'feeds/feeds', locals: { feeds: @feeds }
         .panel-footer

@@ -10,7 +10,7 @@
   .form-group
     = f.label :name, class: "col-sm-3 control-label"
     .col-sm-9
-      = f.text_field :name, placeholder: "Name", class: "form-control"
+      = f.text_field :name, placeholder: "Name", class: "form-control", required: true
   .form-group
     = f.label :additional_name, "Additional Name", class: "col-sm-3 control-label"
     .col-sm-9
@@ -22,7 +22,7 @@
   .form-group
     = f.label :company_type_id, class: "col-sm-3 control-label"
     .col-sm-9
-      = collection_select(:company, :company_type_id, CompanyType.all, :id, :name, { prompt: "Select Company Type" }, { class: "form-control" })
+      = collection_select(:company, :company_type_id, CompanyType.all, :id, :name, { prompt: "Select Company Type" }, { class: "form-control", required: true })
   .form-group
     = f.label :address_line_1, "Address Line 1", class: "col-sm-3 control-label"
     .col-sm-9

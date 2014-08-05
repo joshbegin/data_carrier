@@ -12,8 +12,8 @@ class CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
     @company = Company.find(params[:id])
-    @feeds = @company.feeds
     @partner_connection_feeds = Feed.partner_connections(@company)
+    @feeds = @company.feeds - @partner_connection_feeds
   end
 
   # GET /companies/new

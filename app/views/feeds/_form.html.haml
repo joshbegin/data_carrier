@@ -10,15 +10,15 @@
   .form-group
     = f.label :name, class: "col-sm-4 control-label"
     .col-sm-8
-      = f.text_field :name, placeholder: "Name", class: "form-control"
+      = f.text_field :name, placeholder: "Name", class: "form-control", autofocus: true, required: true
   .form-group
     = f.label :company_id, class: "col-sm-4 control-label"
     .col-sm-8
-      = collection_select(:feed, :company_id, Company.all, :id, :name, { prompt: "Select Company" }, { class: 'form-control' })
+      = collection_select(:feed, :company_id, Company.all, :id, :name, { prompt: "Select Company" }, { class: 'form-control', required: true })
   .form-group
     = f.label :feed_type_id, "Feed Type", class: "col-sm-4 control-label"
     .col-sm-8
-      = collection_select(:feed, :feed_type_id, FeedType.all, :id, :name, { prompt: "Select Feed Type" }, { class: "form-control" })
+      = collection_select(:feed, :feed_type_id, FeedType.all, :id, :name, { prompt: "Select Feed Type" }, { class: "form-control", required: true })
   .form-group
     = f.label :transaction_type, "Transaction Type", class: "col-sm-4 control-label"
     .col-sm-8
@@ -30,7 +30,8 @@
   .form-group
     = f.label :feed_status_id, "Feed Status", class: "col-sm-4 control-label"
     .col-sm-8
-      = collection_select(:feed, :feed_status_id, FeedStatus.all, :id, :name, { prompt: "Select Feed Status" }, { class: "form-control" })
+      = collection_select(:feed, :feed_status_id, FeedStatus.all, :id, :name, { prompt: "Select Feed Status" }, { class: "form-control", required: true })
+  %hr
   .form-group
     = f.label :source_system_type_id, "Source System Type", class: "col-sm-4 control-label"
     .col-sm-8
@@ -63,6 +64,7 @@
     = f.label :production_end_date, "Production End Date", class: "col-sm-4 control-label"
     .col-sm-8
       = f.date_field :production_end_date
+  %hr
   .form-group
     .col-sm-offset-4.col-sm-8
       .checkbox
@@ -93,6 +95,7 @@
     = f.label :data_view_password, "DataView Password", class: "col-sm-4 control-label"
     .col-sm-8
       = f.text_field :data_view_password, class: "form-control"
+  %hr
   .form-group
     = f.label :partner, "Partner (Partner Connections)", class: "col-sm-4 control-label"
     .col-sm-8
@@ -106,6 +109,7 @@
       .checkbox
         = f.label :split_by_data_rail, "Split by DataRail?"
         = f.check_box :split_by_data_rail
+  %hr
   .form-group
     = f.label :notes, class: "col-sm-4 control-label"
     .col-sm-8
