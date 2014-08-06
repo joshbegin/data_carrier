@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ParentCompaniesController do
+describe ParentCompaniesController, :type => :controller do
 
   before(:each) do
     @pc1, @pc2 = FactoryGirl.create(:parent_company), FactoryGirl.create(:parent_company)
