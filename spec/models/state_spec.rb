@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe State do
+describe State, :type => :model do
 
   it { is_expected.to respond_to(:name) }
   it { is_expected.to respond_to(:abbreviation) }
@@ -65,5 +65,5 @@ describe State do
     end
   end
 
-  it { should have_many(:companies) }
+  it { is_expected.to have_many(:companies) }
 end

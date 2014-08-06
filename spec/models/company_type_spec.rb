@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CompanyType do
+describe CompanyType, :type => :model do
 
     it { is_expected.to respond_to(:name) }
 
@@ -15,5 +15,5 @@ describe CompanyType do
       end
     end
 
-    it { should have_many(:companies) }
+    it { is_expected.to have_many(:companies) }
 end

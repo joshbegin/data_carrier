@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FeedType do
+describe FeedType, :type => :model do
 
   it { is_expected.to respond_to(:name) }
 
@@ -20,5 +20,5 @@ describe FeedType do
     end
   end
 
-  it { should have_many(:feeds) }
+  it { is_expected.to have_many(:feeds) }
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TransmissionType do
+describe TransmissionType, :type => :model do
   it { is_expected.to respond_to(:name) }
 
   it "has the correct values" do
@@ -19,6 +19,6 @@ describe TransmissionType do
     end
   end
 
-  it { should have_many(:souce_transmission_type_feeds).class_name('Feed') }
-  it { should have_many(:destination_transmission_type_feeds).class_name('Feed') }
+  it { is_expected.to have_many(:souce_transmission_type_feeds).class_name('Feed') }
+  it { is_expected.to have_many(:destination_transmission_type_feeds).class_name('Feed') }
 end

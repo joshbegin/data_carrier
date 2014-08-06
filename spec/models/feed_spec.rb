@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Feed do
+describe Feed, :type => :model do
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:company_id) }
   it { is_expected.to validate_uniqueness_of(:name) }
@@ -39,15 +39,15 @@ describe Feed do
     expect(@feed.save).to eq(false)
   end
 
-  it { should belong_to(:feed_frequency) }
-  it { should belong_to(:feed_status) }
-  it { should belong_to(:feed_type) }
-  it { should belong_to(:company) }
-  it { should belong_to(:source_system_type).class_name('SystemType') }
-  it { should belong_to(:destination_system_type).class_name('SystemType') }
-  it { should belong_to(:source_transmission_type).class_name('TransmissionType') }
-  it { should belong_to(:destination_transmission_type).class_name('TransmissionType') }
-  it { should have_many(:child_feeds).class_name('Feed') }
-  it { should belong_to(:parent_feed).class_name('Feed') }
+  it { is_expected.to belong_to(:feed_frequency) }
+  it { is_expected.to belong_to(:feed_status) }
+  it { is_expected.to belong_to(:feed_type) }
+  it { is_expected.to belong_to(:company) }
+  it { is_expected.to belong_to(:source_system_type).class_name('SystemType') }
+  it { is_expected.to belong_to(:destination_system_type).class_name('SystemType') }
+  it { is_expected.to belong_to(:source_transmission_type).class_name('TransmissionType') }
+  it { is_expected.to belong_to(:destination_transmission_type).class_name('TransmissionType') }
+  it { is_expected.to have_many(:child_feeds).class_name('Feed') }
+  it { is_expected.to belong_to(:parent_feed).class_name('Feed') }
 
 end

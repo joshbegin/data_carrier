@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "When not logged in" do
+describe "When not logged in", :type => :feature do
   it "should allow me to create an account" do
     visit new_user_registration_path
     fill_in "Name",                     with: "Test User"
@@ -12,7 +12,7 @@ describe "When not logged in" do
   end
 end
 
-describe "All Users" do
+describe "All Users", :type => :feature do
   before :each do
     @user = FactoryGirl.create(:user)
     @parent = FactoryGirl.create(:parent_company)
@@ -58,7 +58,7 @@ describe "All Users" do
   end
 end
 
-describe "Non-admin Users" do
+describe "Non-admin Users", :type => :feature do
   before :each do
     @user = FactoryGirl.create(:user)
   end
@@ -85,7 +85,7 @@ describe "Non-admin Users" do
   end
 end
 
-describe "Admin Users" do
+describe "Admin Users", :type => :feature do
   before :each do
     @admin = FactoryGirl.create(:admin)
     signin(@admin)

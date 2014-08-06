@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Company do
+describe Company, :type => :model do
 
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:company_type_id) }
@@ -11,7 +11,7 @@ describe Company do
     expect(Company.recently_updated(5).count).to eq(3)
   end
 
-  it { should belong_to(:parent_company) }
-  it { should belong_to(:company_type) }
-  it { should belong_to(:state) }
+  it { is_expected.to belong_to(:parent_company) }
+  it { is_expected.to belong_to(:company_type) }
+  it { is_expected.to belong_to(:state) }
 end

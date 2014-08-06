@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Companies" do
+describe "Companies", :type => :feature do
 
   subject { page }
 

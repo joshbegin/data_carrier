@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe FeedFrequency do
+describe FeedFrequency, :type => :model do
 
   it { is_expected.to respond_to(:name) }
 
@@ -30,5 +30,5 @@ describe FeedFrequency do
     end
   end
 
-  it { should have_many(:feeds) }
+  it { is_expected.to have_many(:feeds) }
 end

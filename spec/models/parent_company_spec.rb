@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ParentCompany do
+describe ParentCompany, :type => :model do
 
   before(:each) do
     @attr = {
@@ -21,5 +21,5 @@ describe ParentCompany do
     expect(ParentCompany.recently_updated(5).count).to eq(3)
   end
 
-  it { should have_many(:companies) }
+  it { is_expected.to have_many(:companies) }
 end

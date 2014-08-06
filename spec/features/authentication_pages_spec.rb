@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Authentication" do
+describe "Authentication", :type => :feature do
 
   describe "the signin process" do
     before :each do

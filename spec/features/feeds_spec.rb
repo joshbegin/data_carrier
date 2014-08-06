@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Feeds" do
+describe "Feeds", :type => :feature do
 
   subject { page }
 
