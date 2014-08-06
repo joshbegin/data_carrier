@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/controller_macros.rb'
 
 describe UsersController, :type => :controller do
   describe "All Users" do
