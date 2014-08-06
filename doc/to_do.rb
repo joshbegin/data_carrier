@@ -80,3 +80,6 @@ class Feed < ActiveRecord::Base
 
   belongs_to :parent_feed, class_name: "Feed"
 end
+
+#8-4-14
+#Add Index page for Partner Connection Feeds? Add a filter to the main page?
