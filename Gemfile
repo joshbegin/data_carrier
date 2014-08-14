@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby '2.1.2'
 gem 'rails', '4.1.4'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.1'
@@ -18,6 +18,7 @@ gem 'thin'
 gem "brakeman", :require => false
 gem 'paper_trail'
 gem "rack-dev-mark"
+gem "therubyracer"
 group :development, :test do
   gem 'rspec-rails'
   gem 'better_errors'
@@ -39,7 +40,6 @@ group :development, :test do
   gem 'spring'
 end
 group :test do
-  gem 'minitest'
   gem 'shoulda-matchers'
   gem 'simplecov'
 end
