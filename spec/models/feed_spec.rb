@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Feed, :type => :model do
   it { is_expected.to validate_presence_of(:name) }
@@ -49,5 +49,6 @@ describe Feed, :type => :model do
   it { is_expected.to belong_to(:destination_transmission_type).class_name('TransmissionType') }
   it { is_expected.to have_many(:child_feeds).class_name('Feed') }
   it { is_expected.to belong_to(:parent_feed).class_name('Feed') }
+  it { is_expected.to have_many(:contacts).through(:feed_contacts) }
 
 end

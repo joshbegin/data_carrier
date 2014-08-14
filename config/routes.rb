@@ -1,4 +1,6 @@
 DataCarrier::Application.routes.draw do
+  resources :contacts
+
   resources :feeds
 
   resources :companies

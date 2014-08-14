@@ -17,4 +17,8 @@
 jQuery( function($) {
     $('a').tooltip();
 });
+
+jQuery( function($) {
+    $('abbr').tooltip();
+});
 //= require_tree .

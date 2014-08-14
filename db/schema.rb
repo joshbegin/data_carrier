@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712193457) do
+ActiveRecord::Schema.define(version: 20140812014513) do
 
   create_table "companies", force: true do |t|
     t.integer  "parent_company_id"
@@ -34,6 +34,40 @@ ActiveRecord::Schema.define(version: 20140712193457) do
 
   create_table "company_types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contact_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "address_line_3"
+    t.string   "email"
+    t.integer  "gender_id"
+    t.string   "title"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "city"
+    t.integer  "state_id"
+    t.string   "zip"
+  end
+
+  create_table "feed_contacts", force: true do |t|
+    t.integer  "feed_id"
+    t.integer  "contact_id"
+    t.integer  "contact_type_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -84,6 +118,12 @@ ActiveRecord::Schema.define(version: 20140712193457) do
     t.integer  "source_transmission_type_id"
     t.integer  "destination_transmission_type_id"
     t.integer  "parent_feed_id"
+  end
+
+  create_table "genders", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "parent_companies", force: true do |t|

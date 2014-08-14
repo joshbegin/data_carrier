@@ -10,6 +10,8 @@ class Feed < ActiveRecord::Base
   belongs_to :destination_transmission_type, class_name: 'TransmissionType', foreign_key: 'destination_transmission_type_id'
   has_many :child_feeds, class_name: "Feed", foreign_key: "parent_feed_id"
   belongs_to :parent_feed, class_name: "Feed"
+  has_many :feed_contacts
+  has_many :contacts, through: :feed_contacts
 
   validates :name, presence: true, uniqueness: true
   validates :company_id, :feed_type_id, :feed_status_id, presence: true

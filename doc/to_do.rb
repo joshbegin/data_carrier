@@ -82,4 +82,18 @@ class Feed < ActiveRecord::Base
 end
 
 #8-4-14
-#Add Index page for Partner Connection Feeds? Add a filter to the main page?
+# Add Index page for Partner Connection Feeds? Add a filter to the main page?
+
+Contacts
+Feeds has_many Contacts through feed_contacts
+Contacts index page (list of all contacts)
+assign contacts to feeds through additional form (ajax form?)
+rails g model Gender name
+rails g model ContactType name
+rails g scaffold Contact first_name last_name phone address_line_1 address_line_2 address_line_3 email gender_id:integer title notes:text
+ (Business, Technical, Support, Internal, etc...)
+rails g model FeedContact feed_id:integer contact_id:integer contact_type:integer start_date:datetime end_date:datetime
+
+
+
+

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "When not logged in", :type => :feature do
   it "should allow me to create an account" do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe State, :type => :model do
 
@@ -66,4 +66,5 @@ describe State, :type => :model do
   end
 
   it { is_expected.to have_many(:companies) }
+  it { is_expected.to have_many(:contacts) }
 end

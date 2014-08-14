@@ -1,0 +1,70 @@
+- provide(:title, "Contact Details")
+.container
+  .row
+    .col-md-12
+      %br
+      %ol.breadcrumb
+        %li= link_to "Home", root_path
+        %li= link_to "Companies", companies_path
+        %li= link_to "Feeds", feeds_path
+        %li= link_to "Contacts", contacts_path
+        %li.active= @contact.full_name
+      %h3= "#{@contact.full_name} Details"
+  .row
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseOne"}
+              Contact Information
+        #collapseOne.panel-collapse.collapse.in
+          .panel-body
+            %dl.dl-horizontal
+              %dt
+                %b First Name:
+              %dd= @contact.first_name
+              %dt
+                %b Last Name:
+              %dd= @contact.last_name
+              %dt
+                %b Title:
+              %dd= @contact.try(:title)
+              %dt
+                %b Gender:
+              %dd= @contact.try(:gender).try(:name)
+              %dt
+                %b Phone:
+              %dd= @contact.phone
+              %dt
+                %b Email:
+              %dd= @contact.email
+              %hr
+              %dt
+                %b Notes:
+              %dd= @contact.notes
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseTwo"}
+              Contact Address
+        #collapseTwo.panel-collapse.collapse.in
+          .panel-body
+            %dl.dl-horizontal
+              %address
+                - unless @contact.address_line_1.blank?
+                  = @contact.address_line_1
+                  %br
+                - unless @contact.address_line_2.blank?
+                  = @contact.address_line_2
+                  %br
+                - unless @contact.address_line_3.blank?
+                  = @contact.address_line_3
+                  %br
+                - unless @contact.state_id.blank? && @contact.city.blank? && @contact.zip.blank?
+                  = "#{@contact.try(:city)}, #{@contact.try(:state).try(:name)} #{@contact.try(:zip)}"
+  .row
+    .col-md-12
+      .well
+        = link_to 'Edit', edit_contact_path(@contact), title: 'Edit the current Contact', rel: 'tooltip', class: "btn btn-primary" if current_user.admin?
+        = link_to 'Back', :back, title: 'Back to Previous Page', rel: 'tooltip', class: "btn btn-default"

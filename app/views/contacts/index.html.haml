@@ -1,0 +1,14 @@
+- provide(:title, "Feeds")
+.container
+  .row
+    .col-md-12
+      %br
+      %ol.breadcrumb
+        %li= link_to "Home", root_path
+        %li= link_to "Parent Companies", parent_companies_path
+        %li= link_to "Companies", companies_path
+        %li= link_to "Feeds", feeds_path
+        %li.active= "Contacts"
+      %h3 Contacts
+      = render partial: 'contacts/contacts', locals: { contacts: @contacts }
+      = link_to "Add Contact", new_contact_path, class: "btn btn-primary" if current_user && current_user.admin?

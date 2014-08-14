@@ -4,6 +4,8 @@ $btn-primary-bg: #FF7721;*/
 
 @import "bootswatch/flatly/variables";
 @import "bootstrap";
+// Bootstrap body padding for fixed navbar
+body { padding-top: 60px; }
 @import "bootswatch/flatly/bootswatch";
 
 // make all images responsive by default
@@ -42,7 +44,7 @@ main {
   //background-color: #eee;
   padding-bottom: 80px;
   width: 100%;
-  margin-top: 51px; // accommodate the navbar
+  /*margin-top: 51px; // accommodate the navbar*/
   }
 section {
   @extend .row;
@@ -83,4 +85,7 @@ section {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-xs;
+}
+a:link {
+    text-decoration: none;
 }

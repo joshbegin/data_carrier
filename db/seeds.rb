@@ -156,3 +156,27 @@ system_types.each do |f|
 end
 
 puts "#{SystemType.count} system types created"
+
+genders = [
+  "Male",
+  "Female"
+]
+
+genders.each do |f|
+  Gender.create(name: f)
+end
+
+puts "#{Gender.count} genders created"
+
+contact_types = [
+        "Business",
+        "Technical",
+        "Support",
+        "iPipeline"
+      ]
+
+contact_types.each do |f|
+  ContactType.create(name: f)
+end
+
+puts "#{ContactType.count} contact types created"

@@ -57,13 +57,13 @@
                 %b Source System Type:
               %dd= @feed.try(:source_system_type).try(:name)
               %dt
-                %b= link_to "Dest. System Type:", "", title: 'Destination System Type', rel: 'tooltip'
+                %abbr{title: "Destination System Type", rel: 'tooltip'} Dest. Sys. Type:
               %dd= @feed.try(:destination_system_type).try(:name)
               %dt
-                %b= link_to "Source Trans. Type:", "", title: 'Source Transmission Type', rel: 'tooltip'
+                %abbr{title: "Source Transmission Type", rel: 'tooltip'} Source Trans. Type:
               %dd= @feed.try(:source_transmission_type).try(:name)
               %dt
-                %b= link_to "Dest. Trans. Type:", "", title: 'Destination Transmission Type', rel: 'tooltip'
+                %abbr{title: "Destination Transmission Type", rel: 'tooltip'} Dest. Trans. Type:
               %dd= @feed.try(:destination_transmission_type).try(:name)
               %dt
                 %b Stage URL:
