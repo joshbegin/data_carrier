@@ -38,10 +38,6 @@
               %dt
                 %b Email:
               %dd= @contact.email
-              %hr
-              %dt
-                %b Notes:
-              %dd= @contact.notes
     .col-md-6
       .panel.panel-default
         .panel-heading
@@ -63,6 +59,19 @@
                   %br
                 - unless @contact.state_id.blank? && @contact.city.blank? && @contact.zip.blank?
                   = "#{@contact.try(:city)}, #{@contact.try(:state).try(:name)} #{@contact.try(:zip)}"
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseNotes"}
+              Notes
+        #collapseNotes.panel-collapse.collapse.in
+          .panel-body
+            %dl.dl-horizontal
+              %dt
+                %b Notes:
+              %dd= @contact.notes                  
   .row
     .col-md-12
       .well

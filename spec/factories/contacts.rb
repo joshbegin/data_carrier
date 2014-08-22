@@ -9,9 +9,9 @@ FactoryGirl.define do
     address_line_2 { Faker::Address.secondary_address }
     address_line_3 { Faker::Address.secondary_address }
     city { Faker::Address.city }
-    state_id (1..50).to_a.sample
+    state_id State.all.sample.id
     email { Faker::Internet.email }
-    gender_id (1..2).to_a.sample
+    gender_id Gender.all.sample.id
     title { Faker::Company.bs }
     notes { Faker::Lorem.paragraph(4) }
   end

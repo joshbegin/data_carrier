@@ -64,9 +64,9 @@ describe "ParentCompanies", :type => :feature do
     it { is_expected.to have_link('Parent Companies', href: parent_companies_path) }
 
     it "should display the correct child carriers" do
-      @company = FactoryGirl.create(:company)
+      @company = FactoryGirl.create(:company, parent_company_id: @parent_company.id)
       visit parent_company_path(@parent_company)
-      expect(page).to have_text(@company.name)
+      expect(page).to have_link(@company.name)
     end
 
   end

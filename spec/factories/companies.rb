@@ -3,7 +3,7 @@ require 'faker'
 FactoryGirl.define do
   factory :company do
     company_type_id 1
-    state_id 1
+    state_id State.all.sample.id
     name { Faker::Company.name }
     additional_name { Faker::Company.catch_phrase }
     address_line_1 { Faker::Address.street_address }
@@ -15,7 +15,7 @@ FactoryGirl.define do
     naic_code "NAIC 1"
     ai_carrier_code "AI Code 1"
     notes { Faker::Lorem.paragraph }
-    parent_company_id 1
+    parent_company_id ParentCompany.all.sample.id unless ParentCompany.first.nil?
   end
 
   factory :minimal_company, class: Company do

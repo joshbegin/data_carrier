@@ -154,10 +154,8 @@ describe "Feeds", :type => :feature do
       expect(page).to have_text(@feed.try(:sent_to_data_rail))
       expect(page).to have_text(@feed.try(:enhanced_carrier_status))
       expect(page).to have_text(@feed.try(:data_rail_api_key))
-      expect(page).to have_text(@feed.try(:data_rail_password))
       expect(page).to have_text(@feed.try(:data_rail_queue_priority))
       expect(page).to have_text(@feed.try(:data_view_username))
-      expect(page).to have_text(@feed.try(:data_view_password))
       expect(page).to have_text(@feed.try(:partner))
       expect(page).to have_text(@feed.try(:split_by_data_rail))
       expect(page).to have_text(@feed.try(:source_system_type).try(:name))
@@ -165,6 +163,15 @@ describe "Feeds", :type => :feature do
       expect(page).to have_text(@feed.try(:source_transmission_type).try(:name))
       expect(page).to have_text(@feed.try(:destination_transmission_type).try(:name))
       expect(page).to have_text(@feed.try(:parent_feed).try(:name))
+    end
+
+    it "should obscure DR and DV password fields" do
+      visit feed_path(@feed)
+      expect(page).to have_text('DataRail Password:')
+      expect(page).to_not have_text(@feed.try(:data_rail_password))
+      expect(page).to have_text('DataView Password:')
+      expect(page).to_not have_text(@feed.try(:data_view_password))
+      expect(page).to have_text('********')
     end
 
     it "should take me back when I click the Back button from the Show page" do

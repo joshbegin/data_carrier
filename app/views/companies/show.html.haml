@@ -111,7 +111,7 @@
         .panel-heading
           %h4.panel-title
             %a{"data-toggle" => "collapse", href: "#collapseCompanyFive"}
-              = "#{@company.name} Feeds (excluding Partner Connections)"
+              = "#{@company.name} - Feeds (excluding Partner Connections)"
         #collapseCompanyFive.panel-collapse.collapse.in
           = render partial: 'feeds/feeds', locals: { feeds: @feeds }
         .panel-footer
@@ -123,7 +123,7 @@
         .panel-heading
           %h4.panel-title
             %a{"data-toggle" => "collapse", href: "#collapseCompanySix"}
-              = "#{@company.name} Partner Connection Feeds"
+              = "#{@company.name} - Partner Connection Feeds"
         #collapseCompanySix.panel-collapse.collapse.in
           = render partial: 'feeds/feeds', locals: { feeds: @partner_connection_feeds }
         .panel-footer

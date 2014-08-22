@@ -134,7 +134,7 @@ describe "Contacts", :type => :feature do
     end
 
     it "should not be able to edit Contacts" do
-      visit edit_contacts_path(@contact)
+      visit edit_contact_path(@contact)
       expect(page).to have_selector('h3',    text: 'Log in')
       expect(page).to have_content('You need to sign in or sign up before continuing.')
     end

@@ -54,11 +54,8 @@
           .panel-body
             %dl.dl-horizontal
               %dt
-                %b Source System Type:
-              %dd= @feed.try(:source_system_type).try(:name)
-              %dt
-                %abbr{title: "Destination System Type", rel: 'tooltip'} Dest. Sys. Type:
-              %dd= @feed.try(:destination_system_type).try(:name)
+                %abbr{title: "Source to Destination Sys. Type", rel: 'tooltip'} Source -> Dest.
+              %dd= "#{@feed.try(:source_system_type).try(:name)} -> #{@feed.try(:destination_system_type).try(:name)}"
               %dt
                 %abbr{title: "Source Transmission Type", rel: 'tooltip'} Source Trans. Type:
               %dd= @feed.try(:source_transmission_type).try(:name)
@@ -98,7 +95,10 @@
               %dd= @feed.try(:data_rail_api_key)
               %dt
                 %b DataRail Password:
-              %dd= @feed.try(:data_rail_password)
+              - if current_user.admin?
+                %dd= @feed.try(:data_rail_password)
+              - else
+                %dd ********
               %dt
                 %b DR Queue Priority:
               %dd= @feed.try(:data_rail_queue_priority)
@@ -107,7 +107,10 @@
               %dd= @feed.try(:data_view_username)
               %dt
                 %b DataView Password:
-              %dd= @feed.try(:data_view_password)
+              - if current_user.admin?
+                %dd= @feed.try(:data_view_password)
+              - else
+                %dd ********
     .col-md-6
       .panel.panel-default
         .panel-heading
