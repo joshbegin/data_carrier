@@ -47,7 +47,7 @@ describe "Companies", :type => :feature do
       fill_in "Name",                             with: "Company ABC"
       fill_in "Additional Name",                  with: "Addl name"
       select(@parent_company.name,                from: 'Parent company')
-      select(CompanyType.first.name,              from: 'Company type')
+      choose(CompanyType.first.name)
       select(State.first.name,                    from: 'State')
       fill_in "Address Line 1",                   with: "Address Line 1"
       fill_in "Address Line 2",                   with: "Address Line 2"

@@ -1,64 +1,17 @@
-= form_for(@contact, html: { class: "form-horizontal"} ) do |f|
-  - if @contact.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@contact.errors.count, "error")} prohibited this contact from being saved:"
-      %ul
-        - @contact.errors.full_messages.each do |msg|
-          %li= msg
-
-  .form-group
-    = f.label :first_name, "First Name", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :first_name, placeholder: "First Name", class: "form-control", autofocus: true, required: true
-  .form-group
-    = f.label :last_name, "Last Name", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :last_name, placeholder: "Last Name", class: "form-control", required: true
-  .form-group
-    = f.label :phone, class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.telephone_field :phone, class: "form-control"
-  .form-group
-    = f.label :address_line_1, "Address Line 1", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :address_line_1, class: "form-control"
-  .form-group
-    = f.label :address_line_2, "Address Line 2", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :address_line_2, class: "form-control"
-  .form-group
-    = f.label :address_line_3, "Address Line 3", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :address_line_3, class: "form-control"
-  .form-group
-    = f.label :city, class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :city, class: "form-control"
-  .form-group
-    = f.label :state_id, class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:contact, :state_id, State.all, :id, :name, { prompt: "Select State" }, { class: 'form-control' })
-  .form-group
-    = f.label :zip, class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :zip, class: "form-control"
-  .form-group
-    = f.label :email, class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.email_field :email, class: "form-control"
-  .form-group
-    = f.label :gender_id, class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:contact, :gender_id, Gender.all, :id, :name, { prompt: "Select Gender" }, { class: 'form-control' })
-  .form-group
-    = f.label :title, class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :title, class: "form-control"
-  .form-group
-    = f.label :notes, class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_area :notes, class: "form-control"
-  .form-group
-    .col-sm-offset-4.col-sm-8
-      = f.submit class: "btn btn-primary"
-      = link_to "Cancel", :back, class: "btn btn-default"
+= simple_form_for @contact, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+  = f.error_notification
+  = f.input :first_name, placeholder: "First Name"
+  = f.input :last_name, placeholder: "Last Name"
+  = f.input :phone
+  = f.input :address_line_1, label: "Address Line 1", placeholder: "Address Line 1"
+  = f.input :address_line_2, label: "Address Line 2", placeholder: "Address Line 2"
+  = f.input :address_line_3, label: "Address Line 3", placeholder: "Address Line 3"
+  = f.input :city, placeholder: "City"
+  = f.association :state, include_blank: true, prompt: "Select State"
+  = f.input :zip, placeholder: "Zip"
+  = f.input :email, placeholder: "Email Address"
+  = f.association :gender, include_blank: true, prompt: "Select Gender", as: :radio_buttons
+  = f.input :title, placeholder: "Title"
+  = f.input :notes
+  = f.button :submit, class: "btn-primary"
+  = link_to "Cancel", :back, class: "btn btn-default"

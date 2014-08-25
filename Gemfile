@@ -19,6 +19,7 @@ gem "brakeman", :require => false
 gem 'paper_trail'
 gem "rack-dev-mark"
 gem "therubyracer"
+gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form'
 group :development, :test do
   gem 'rspec-rails'
   gem 'better_errors'
