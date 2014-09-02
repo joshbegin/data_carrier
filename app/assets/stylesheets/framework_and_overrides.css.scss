@@ -1,12 +1,15 @@
 // import the CSS framework
-/*$navbar-default-bg: #1474B7;
-$btn-primary-bg: #FF7721;*/
+$navbar-inverse-bg: #0073BB;
+$link-color: #0073BB;
+$panel-primary-heading-bg: #0073BB;
+// $btn-primary-bg: #FF7721;
+$btn-primary-bg: #FF7800;
 
-@import "bootswatch/flatly/variables";
+@import "bootswatch/paper/variables";
 @import "bootstrap";
 // Bootstrap body padding for fixed navbar
 body { padding-top: 60px; }
-@import "bootswatch/flatly/bootswatch";
+@import "bootswatch/paper/bootswatch";
 
 // make all images responsive by default
 img {

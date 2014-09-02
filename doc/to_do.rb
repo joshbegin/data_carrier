@@ -94,6 +94,6 @@ rails g scaffold Contact first_name last_name phone address_line_1 address_line_
  (Business, Technical, Support, Internal, etc...)
 rails g model FeedContact feed_id:integer contact_id:integer contact_type:integer start_date:datetime end_date:datetime
 
-
-
+# 8-31-14
+# Figure out how to get JS delete working for embedded tables (currently it deletes, but doesn't refresh the page)
 

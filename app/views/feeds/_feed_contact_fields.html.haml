@@ -1,0 +1,9 @@
+.nested-fields.feed-tag-fields
+  #contact_from_list
+    = f.association :contact, collection: Contact.all, label_method: :full_name, :prompt => 'Choose an existing contact'
+    = f.association :contact_type
+    = f.input :start_date, as: :date, html5: true
+    = f.input :end_date, as: :date, html5: true
+  / = link_to_add_association 'or create a new contact', f, :contact
+  = link_to_remove_association "Remove contact from this Feed", f
+  %hr

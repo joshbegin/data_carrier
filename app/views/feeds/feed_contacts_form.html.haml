@@ -1,0 +1,12 @@
+.container
+  .row
+    %h3= "New Feed"
+  .row
+    .col-sm-7
+      = simple_form_for @feed, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+        = f.error_notification
+        #contacts
+          = f.simple_fields_for :feed_contacts do |feed_contact|
+            = render 'feeds/feed_contact_fields', f: feed_contact
+          / = link_to_add_association 'add a Contact', f, :feed_contacts
+        = f.button :submit

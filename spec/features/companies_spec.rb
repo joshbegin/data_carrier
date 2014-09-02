@@ -47,7 +47,7 @@ describe "Companies", :type => :feature do
       fill_in "Name",                             with: "Company ABC"
       fill_in "Additional Name",                  with: "Addl name"
       select(@parent_company.name,                from: 'Parent company')
-      select(CompanyType.first.name,              from: 'Company type')
+      choose(CompanyType.first.name)
       select(State.first.name,                    from: 'State')
       fill_in "Address Line 1",                   with: "Address Line 1"
       fill_in "Address Line 2",                   with: "Address Line 2"
@@ -83,7 +83,7 @@ describe "Companies", :type => :feature do
         expect(page).to_not have_link("Delete")
       end
     end
-
+    
     it "should display the correct feeds" do
       @feed = FactoryGirl.create(:feed)
       visit company_path(@company)
@@ -91,7 +91,7 @@ describe "Companies", :type => :feature do
     end
 
     it { is_expected.to have_link('Companies', href: companies_path) }
-
+    
   end
 
   describe "as non-admin user" do
@@ -162,4 +162,26 @@ describe "Companies", :type => :feature do
 
     it { is_expected.not_to have_link('Companies', href: companies_path) }
   end
+
+  # describe "Javascript tests", js: true do
+  #   before do
+  #     @admin = FactoryGirl.create(:admin)
+  #     signin(@admin)
+  #   end
+
+  #   it "should be able to add Parent Company on the fly" do
+
+  #     # expect(page).to have_text("You need to sign in or sign up before continuing.")
+  #     company = FactoryGirl.build(:company)
+  #     parent = FactoryGirl.build(:parent_company)
+  #     visit new_company_path
+  #     puts current_path
+  #     fill_in "company_name",                     with: company.name
+  #     click_link("Add a new Parent Company")
+  #     fill_in "Parent Company Name",  with: parent.name
+  #     choose(CompanyType.first.name)
+  #     click_button("Create Company")
+  #     expect(page).to have_link(parent.name)
+  #   end
+  # end
 end

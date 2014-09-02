@@ -1,21 +1,5 @@
-= form_for(@parent_company, :html => { :class => "form-horizontal"} ) do |f|
-  - if @parent_company.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@parent_company.errors.count, "error")
-        prohibited this parent_company from being saved:
-      %ul
-        - @parent_company.errors.full_messages.each do |msg|
-          %li= msg
-  .form-group
-    = f.label :name, class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :name, placeholder: "Name", class: "form-control", required: true
-  .form-group
-    = f.label :additional_name, "Additional Name", class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :additional_name, placeholder: "Alias", class: "form-control"
-  .form-group
-    .col-sm-offset-3.col-sm-9
-      = f.submit class: "btn btn-primary"
-      = link_to "Cancel", :back, class: "btn btn-default"
+= simple_form_for @parent_company, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+  = f.error_notification
+  = render 'form_fields', f: f
+  = f.button :submit, class: "btn-primary"
+  = link_to "Cancel", :back, class: "btn btn-default"

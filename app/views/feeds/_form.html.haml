@@ -1,120 +1,40 @@
-= form_for(@feed, html: { class: "form-horizontal"} ) do |f|
-  - if @feed.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@feed.errors.count, "error")
-        prohibited this feed from being saved:
-      %ul
-        - @feed.errors.full_messages.each do |msg|
-          %li= msg
-  .form-group
-    = f.label :name, class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :name, placeholder: "Name", class: "form-control", autofocus: true, required: true
-  .form-group
-    = f.label :company_id, class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:feed, :company_id, Company.all, :id, :name, { prompt: "Select Company" }, { class: 'form-control', required: true })
-  .form-group
-    = f.label :feed_type_id, "Feed Type", class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:feed, :feed_type_id, FeedType.all, :id, :name, { prompt: "Select Feed Type" }, { class: "form-control", required: true })
-  .form-group
-    = f.label :transaction_type, "Transaction Type", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :transaction_type, placeholder: "ACORD Transaction Type", class: "form-control"
-  .form-group
-    = f.label :feed_frequency_id, "Feed Frequency", class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:feed, :feed_frequency_id, FeedFrequency.all, :id, :name, { prompt: "Select Feed Frequency" }, { class: "form-control" })
-  .form-group
-    = f.label :feed_status_id, "Feed Status", class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:feed, :feed_status_id, FeedStatus.all, :id, :name, { prompt: "Select Feed Status" }, { class: "form-control", required: true })
+= simple_form_for @feed, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+  = f.error_notification
+  = f.input :name, placeholder: "Name"
+  = f.association :company, prompt: "Select Company"
+  = f.association :feed_type, label: "Feed Type:", prompt: "Select Feed Type"
+  = f.input :transaction_type, label: "Transaction Type", placeholder: "ACORD Transaction Type"
+  = f.association :feed_frequency, label: "Feed Frequency", prompt: "Select Feed Frequency"
+  = f.association :feed_status, label: "Feed Status", prompt: "Select Feed Status", as: :radio_buttons
   %hr
-  .form-group
-    = f.label :source_system_type_id, "Source System Type", class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:feed, :source_system_type_id, SystemType.all, :id, :name, { prompt: "Select System Type" }, { class: "form-control" })
-  .form-group
-    = f.label :destination_system_type_id, "Destination System Type", class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:feed, :destination_system_type_id, SystemType.all, :id, :name, { prompt: "Select System Type" }, { class: "form-control" })
-  .form-group
-    = f.label :source_transmission_type_id, "Source Transmission Type", class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:feed, :source_transmission_type_id, TransmissionType.all, :id, :name, { prompt: "Select Transmission Type" }, { class: "form-control" })
-  .form-group
-    = f.label :destination_transmission_type_id, "Destination Transmission Type", class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:feed, :destination_transmission_type_id, TransmissionType.all, :id, :name, { prompt: "Select Transmission Type" }, { class: "form-control" })
-  .form-group
-    = f.label :stage_feed_url, "Stage Feed URL", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.url_field :stage_feed_url, placeholder: "http://...", class: "form-control"
-  .form-group
-    = f.label :production_feed_url, "Production Feed URL", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.url_field :production_feed_url, placeholder: "http://...", class: "form-control"
-  .form-group
-    = f.label :production_start_date, "Production Start Date", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.date_field :production_start_date
-  .form-group
-    = f.label :production_end_date, "Production End Date", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.date_field :production_end_date
+  = f.association :source_system_type, label: "Source System Type", collection: SystemType.all, prompt: "Select System Type", include_blank: true
+  = f.association :destination_system_type, label: "Destination System Type", collection: SystemType.all, prompt: "Select System Type", include_blank: true
+  = f.association :source_transmission_type, label: "Source Transmission Type", collection: SystemType.all, prompt: "Select System Type", include_blank: true
+  = f.association :destination_transmission_type, label: "Destination Transmission Type", collection: SystemType.all, prompt: "Select System Type", include_blank: true
+  = f.input :stage_feed_url, label: "Stage Feed URL", placeholder: "http://..."
+  = f.input :production_feed_url, label: "Production Feed URL", placeholder: "http://..."
+  = f.input :production_start_date, label: "Production Start Date", as: :date, html5: true
+  = f.input :production_end_date, label: "Production End Date", as: :date, html5: true
   %hr
-  .form-group
-    .col-sm-offset-4.col-sm-8
-      .checkbox
-        = f.label :sent_to_data_rail, "Sent to DataRail?"
-        = f.check_box :sent_to_data_rail
-  .form-group
-    .col-sm-offset-4.col-sm-8
-      .checkbox
-        = f.label :enhanced_carrier_status, "Enhanced Carrier Status?"
-        = f.check_box :enhanced_carrier_status
-  .form-group
-    = f.label :data_rail_api_key, "DataRail API Key", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :data_rail_api_key, class: "form-control"
-  .form-group
-    = f.label :data_rail_password, "DataRail Password", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :data_rail_password, class: "form-control"
-  .form-group
-    = f.label :data_rail_queue_priority, "DataRail Queue Priority", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.number_field :data_rail_queue_priority, class: "form-control"
-  .form-group
-    = f.label :data_view_username, "DataView Username", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :data_view_username, class: "form-control"
-  .form-group
-    = f.label :data_view_password, "DataView Password", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :data_view_password, class: "form-control"
+  = f.input :sent_to_data_rail, label: "Sent to DataRail?"
+  = f.input :enhanced_carrier_status, label: "Enhanced Carrier Status?"
+  = f.input :data_rail_api_key, label: "DataRail API Key"
+  = f.input :data_rail_password, label: "DataRail Password"
+  = f.input :data_rail_queue_priority, label: "DataRail Queue Priority"
+  = f.input :data_view_username, label: "DataView Username"
+  = f.input :data_view_password, label: "DataView Password"
   %hr
-  .form-group
-    = f.label :partner, "Partner (Partner Connections)", class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_field :partner, class: "form-control"
-  .form-group
-    = f.label :parent_feed_id, "Parent Feed", class: "col-sm-4 control-label"
-    .col-sm-8
-      = collection_select(:feed, :parent_feed_id, Feed.all, :id, :name_with_company, { prompt: "Select Parent Feed", include_blank: true }, { class: "form-control" })
-  .form-group
-    .col-sm-offset-4.col-sm-8
-      .checkbox
-        = f.label :split_by_data_rail, "Split by DataRail?"
-        = f.check_box :split_by_data_rail
+  = f.input :partner, label: "Partner (Partner Connections)", placeholder: "Name of Partner"
+  = f.association :parent_feed, label_method: :name_with_company, label: "Parent Feed", prompt: "Select Parent Feed", include_blank: true
+  = f.input :split_by_data_rail, label: "Split by DataRail?"
   %hr
-  .form-group
-    = f.label :notes, class: "col-sm-4 control-label"
-    .col-sm-8
-      = f.text_area :notes, class: "form-control"
-  .form-group
-    .col-sm-offset-4.col-sm-8
-      = f.submit class: "btn btn-primary"
-      = link_to "Cancel", :back, class: "btn btn-default"
+  = f.input :notes
+  %hr
+  %h4 Contacts
+  #contacts
+    = f.simple_fields_for :feed_contacts do |feed_contact|
+      = render 'feed_contact_fields', f: feed_contact
+    = link_to_add_association 'Add a Contact for this Feed', f, :feed_contacts
+  %hr
+  = f.button :submit, class: "btn-primary"
+  = link_to "Cancel", :back, class: "btn btn-default"

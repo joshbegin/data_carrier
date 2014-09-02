@@ -49,10 +49,10 @@ describe "Feeds", :type => :feature do
       fill_in "Notes",                                                with: @feed2.notes
       fill_in "Stage Feed URL",                                       with: @feed2.stage_feed_url
       fill_in "Production Feed URL",                                  with: @feed2.production_feed_url
-      fill_in "Production Start Date",                                with: @feed2.production_start_date
-      fill_in "Production End Date",                                  with: @feed2.production_end_date
+      fill_in "feed_production_start_date",                           with: @feed2.production_start_date
+      fill_in "feed_production_end_date",                                  with: @feed2.production_end_date
       select(Company.find(@feed2.company_id).name,                    from: 'Company')
-      select(FeedStatus.find(@feed2.feed_status_id).name,             from: 'Feed Status')
+      choose(FeedStatus.find(@feed2.feed_status_id).name)
       select(FeedFrequency.find(@feed2.feed_frequency_id).name,       from: 'Feed Frequency')
       select(FeedType.find(@feed2.feed_type_id).name,                 from: 'Feed Type')
       fill_in "Transaction Type",                                     with: @feed2.transaction_type
@@ -73,14 +73,14 @@ describe "Feeds", :type => :feature do
     end
 
     it "should be able to choose Parent Feed" do
-      @feed2 = FactoryGirl.create(:feed)
-      @feed3 = FactoryGirl.build(:feed)
+      @feed2 = FactoryGirl.create(:feed, company_id: "#{Company.all.sample.id}", name: "feed2")
+      @feed3 = FactoryGirl.build(:feed, company_id: @feed2.company_id, name: "feed3")
       visit new_feed_path
       fill_in "Name",                                                 with: @feed3.name
       select(Company.find(@feed3.company_id).name,                    from: 'Company')
-      select(FeedStatus.find(@feed3.feed_status_id).name,             from: 'Feed Status')
+      choose(FeedStatus.find(@feed3.feed_status_id).name)
       select(FeedType.find(@feed3.feed_type_id).name,                 from: 'Feed Type')
-      select(@feed2.name_with_company,                               from: 'Parent Feed')
+      select(@feed2.name_with_company,                                from: "feed_parent_feed_id")
       click_button("Create Feed")
       expect(page).to have_text(@feed3.name)
     end

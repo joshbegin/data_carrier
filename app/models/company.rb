@@ -10,4 +10,6 @@ class Company < ActiveRecord::Base
 
   scope :recently_updated, ->(num) { order('updated_at DESC').limit(num) }
   scope :sort_by_name, ->  { order(:name) }
+
+  accepts_nested_attributes_for :parent_company, :reject_if => :all_blank
 end

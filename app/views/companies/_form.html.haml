@@ -1,69 +1,23 @@
-= form_for(@company, html: { class: "form-horizontal"} ) do |f|
-  - if @company.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@company.errors.count, "error")
-        prohibited this company from being saved:
-      %ul
-        - @company.errors.full_messages.each do |msg|
-          %li= msg
-  .form-group
-    = f.label :name, class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :name, placeholder: "Name", class: "form-control", required: true
-  .form-group
-    = f.label :additional_name, "Additional Name", class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :additional_name, placeholder: "Alias", class: "form-control"
-  .form-group
-    = f.label :parent_company_id, class: "col-sm-3 control-label"
-    .col-sm-9
-      = collection_select(:company, :parent_company_id, ParentCompany.all, :id, :name, { prompt: "Select Parent Company" }, { class: "form-control" })
-  .form-group
-    = f.label :company_type_id, class: "col-sm-3 control-label"
-    .col-sm-9
-      = collection_select(:company, :company_type_id, CompanyType.all, :id, :name, { prompt: "Select Company Type" }, { class: "form-control", required: true })
-  .form-group
-    = f.label :address_line_1, "Address Line 1", class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :address_line_1, placeholder: "Line 1", class: "form-control"
-  .form-group
-    = f.label :address_line_2, "Address Line 2", class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :address_line_2, placeholder: "Line 2", class: "form-control"
-  .form-group
-    = f.label :address_line_3, "Address Line 3", class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :address_line_3, placeholder: "Line 3", class: "form-control"
-  .form-group
-    = f.label :city, class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :city, placeholder: "City", class: "form-control"
-  .form-group
-    = f.label :state_id, class: "col-sm-3 control-label"
-    .col-sm-9
-      = collection_select(:company, :state_id, State.all, :id, :name, { prompt: "Select State" }, { class: "form-control" })
-  .form-group
-    = f.label :zip, class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :zip, placeholder: "Zip", class: "form-control"
-  .form-group
-    = f.label :url, "URL", class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :url, placeholder: "URL", class: "form-control"
-  .form-group
-    = f.label :naic_code, "NAIC Code", class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :naic_code, placeholder: "NAIC Code", class: "form-control"
-  .form-group
-    = f.label :ai_carrier_code, "AI Carrier Code", class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_field :ai_carrier_code, placeholder: "AI Carrier Code", class: "form-control"
-  .form-group
-    = f.label :notes, class: "col-sm-3 control-label"
-    .col-sm-9
-      = f.text_area :notes, class: "form-control"
-  .form-group
-    .col-sm-offset-3.col-sm-9
-      = f.submit class: "btn btn-primary"
-      = link_to "Cancel", :back, class: "btn btn-default"
+= simple_form_for @company, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+  = f.error_notification
+  = f.input :name, placeholder: "Name"
+  = f.input :additional_name, label: "Additional Name", placeholder: "Alias"
+  %hr
+  #parent
+    #parent_from_list
+      = f.association :parent_company, prompt: "Select Parent Company", include_blank: true
+    = link_to_add_association 'Add a new Parent Company', f, :parent_company
+  %hr
+  = f.association :company_type, prompt: "Select Company Type", as: :radio_buttons
+  = f.input :address_line_1, label: "Address Line 1", placeholder: "Line 1"
+  = f.input :address_line_2, label: "Address Line 2", placeholder: "Line 2"
+  = f.input :address_line_3, label: "Address Line 3", placeholder: "Line 3"
+  = f.input :city, placeholder: "City"
+  = f.association :state, prompt: "Select State", include_blank: true
+  = f.input :zip, placeholder: "Zip"
+  = f.input :url, label: "URL", placeholder: "URL"
+  = f.input :naic_code, label: "NAIC Code", placeholder: "NAIC Code"
+  = f.input :ai_carrier_code, label: "AI Carrier Code", placeholder: "AI Carrier Code"
+  = f.input :notes
+  = f.button :submit, class: "btn-primary"
+  = link_to "Cancel", :back, class: "btn btn-default"

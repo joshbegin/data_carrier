@@ -54,7 +54,7 @@ describe "Contacts", :type => :feature do
       fill_in "City",                                                 with: @contact2.city
       fill_in "Zip",                                                  with: @contact2.zip
       select(State.find(@contact2.state_id).name,                     from: 'State')
-      select(Gender.find(@contact2.gender_id).name,                   from: 'Gender')
+      choose(Gender.find(@contact2.gender_id).name)
       fill_in "Title",                                                with: @contact2.title
       fill_in "Notes",                                                with: @contact2.notes
 

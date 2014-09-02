@@ -4,7 +4,11 @@ SimpleCov.start 'rails'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'capybara/rspec'
+require 'capybara/webkit/matchers'
 require 'rspec/rails'
+require 'headless'
+
+Capybara.javascript_driver = :webkit
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -34,8 +38,25 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
+  config.before(:each) do
+    DatabaseCleaner.strategy = self.class.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.start
+  end
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  config.before(:suite) do
+    @headless = Headless.new
+    @headless.start
+  end
+
+  config.after(:suite) do
+    @headless.destroy
+  end
+  
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
@@ -44,4 +65,5 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
+  config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
 end

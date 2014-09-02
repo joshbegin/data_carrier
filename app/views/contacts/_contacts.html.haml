@@ -6,6 +6,7 @@
         %th Last Name
         %th Phone
         %th Email
+        %th # of Feeds
         %th
         %th
     %tbody
@@ -15,5 +16,6 @@
           %td= link_to contact.last_name, contact
           %td= contact.phone
           %td= contact.email
+          %td= contact.feed_contacts.count
           %td= link_to "Edit", edit_contact_path(contact), class: "btn btn-xs btn-link" if current_user && current_user.admin?
           %td= link_to "Delete", contact, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-xs btn-danger" if current_user && current_user.admin?

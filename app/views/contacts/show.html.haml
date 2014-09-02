@@ -9,7 +9,7 @@
         %li= link_to "Feeds", feeds_path
         %li= link_to "Contacts", contacts_path
         %li.active= @contact.full_name
-      %h3= "#{@contact.full_name} Details"
+      %h3= "Contact Details - #{@contact.full_name}"
   .row
     .col-md-6
       .panel.panel-default
@@ -77,3 +77,34 @@
       .well
         = link_to 'Edit', edit_contact_path(@contact), title: 'Edit the current Contact', rel: 'tooltip', class: "btn btn-primary" if current_user.admin?
         = link_to 'Back', :back, title: 'Back to Previous Page', rel: 'tooltip', class: "btn btn-default"
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", href: "#collapseCompanyThree"}
+              Contact Feeds
+        #collapseCompanyThree.panel-collapse.collapse.in
+          .table-responsive
+            %table.table.table-striped.table-hover.table-condensed
+              %thead
+                %tr
+                  %th Carrier:
+                  %th Feed Name:
+                  %th 
+                  %th 
+                  %th Type:
+                  %th Start Date:
+                  %th End Date:
+                  %th
+              %tbody
+                - @contact.feed_contacts.each do |feed_contact|
+                  = content_tag_for(:tr, feed_contact) do
+                    %td= link_to feed_contact.try(:feed).try(:company).try(:name), feed_contact.try(:feed).try(:company)
+                    %td= link_to feed_contact.try(:feed).try(:name), feed_contact.try(:feed)
+                    %td
+                    %td
+                    %td= feed_contact.try(:contact_type).try(:name)
+                    %td= feed_contact.try(:start_date)
+                    %td= feed_contact.try(:end_date)
+                    %td= link_to "Delete Relationship", feed_contact, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" if current_user && current_user.admin?

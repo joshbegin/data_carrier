@@ -13,6 +13,9 @@ class Feed < ActiveRecord::Base
   has_many :feed_contacts
   has_many :contacts, through: :feed_contacts
 
+  accepts_nested_attributes_for :feed_contacts, :reject_if => :all_blank
+  accepts_nested_attributes_for :contacts, :reject_if => :all_blank
+
   validates :name, presence: true, uniqueness: true
   validates :company_id, :feed_type_id, :feed_status_id, presence: true
   validate :validate_parent_feed, :validate_parent_feed_company
