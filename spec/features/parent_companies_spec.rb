@@ -19,7 +19,7 @@ describe "ParentCompanies", :type => :feature do
 
     it "should be able to view show pages" do
       visit parent_company_path(@parent_company)
-      expect(page).to have_selector('h3',     text: "#{@parent_company.name} Details")
+      expect(page).to have_selector('h3',     text: "Parent Company Details - #{@parent_company.name}")
     end
 
     it "should be able to edit Parent Companies" do

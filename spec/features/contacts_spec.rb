@@ -19,7 +19,7 @@ describe "Contacts", :type => :feature do
 
     it "should be able to view show pages" do
       visit contact_path(@contact)
-      expect(page).to have_selector('h3',     text: "#{@contact.full_name} Details")
+      expect(page).to have_selector('h3',     text: "Contact Details - #{@contact.full_name}")
     end
 
     it "should be able to edit Contact" do
@@ -27,7 +27,7 @@ describe "Contacts", :type => :feature do
       fill_in "First Name",                             with: "Michael"
       fill_in "Last Name",                              with: "Bluth"
       click_button("Update Contact")
-      expect(page).to have_text("Michael Bluth Details")
+      expect(page).to have_text("Contact Details - Michael Bluth")
     end
 
     it "should raise an error when editing with a missing Name" do
