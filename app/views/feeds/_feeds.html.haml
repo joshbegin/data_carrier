@@ -7,6 +7,7 @@
         %th Parent Company
         %th Type
         %th Status
+        %th # of Contacts
         %th
         %th
     %tbody
@@ -17,5 +18,6 @@
           %td= feed.try(:company).try(:parent_company).try(:name)
           %td= feed.feed_type.name
           %td= feed.feed_status.name
+          %td= feed.feed_contacts.count
           %td= link_to "Edit", edit_feed_path(feed), class: "btn btn-xs btn-link" if current_user && current_user.admin?
           %td= link_to "Delete", feed, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-xs btn-danger" if current_user && current_user.admin?

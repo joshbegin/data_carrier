@@ -2,7 +2,12 @@
   = f.error_notification
   = f.input :name, placeholder: "Name"
   = f.input :additional_name, label: "Additional Name", placeholder: "Alias"
-  = f.association :parent_company, prompt: "Select Parent Company", include_blank: true
+  %hr
+  #parent
+    #parent_from_list
+      = f.association :parent_company, prompt: "Select Parent Company", include_blank: true
+    = link_to_add_association 'Add a new Parent Company', f, :parent_company
+  %hr
   = f.association :company_type, prompt: "Select Company Type", as: :radio_buttons
   = f.input :address_line_1, label: "Address Line 1", placeholder: "Line 1"
   = f.input :address_line_2, label: "Address Line 2", placeholder: "Line 2"

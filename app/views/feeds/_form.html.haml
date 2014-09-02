@@ -29,5 +29,12 @@
   = f.input :split_by_data_rail, label: "Split by DataRail?"
   %hr
   = f.input :notes
+  %hr
+  %h4 Contacts
+  #contacts
+    = f.simple_fields_for :feed_contacts do |feed_contact|
+      = render 'feed_contact_fields', f: feed_contact
+    = link_to_add_association 'Add a Contact for this Feed', f, :feed_contacts
+  %hr
   = f.button :submit, class: "btn-primary"
   = link_to "Cancel", :back, class: "btn btn-default"

@@ -1,5 +1,5 @@
 -# navigation styled for Bootstrap 3.0
-%nav.navbar.navbar-default.navbar-fixed-top
+%nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top
   .container
     .navbar-header
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
@@ -17,4 +17,4 @@
             %em.navbar-text.small= "Signed in as #{current_user.name}"
           - else
             %em.navbar-text.small= "Signed in"
-          %li= button_to 'Logout', destroy_user_session_path, :method=>'delete', class: "btn btn-primary navbar-btn"
+          %li= button_to 'Logout', destroy_user_session_path, :method=>'delete', class: "btn btn-default navbar-btn"

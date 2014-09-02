@@ -11,7 +11,7 @@
           %li= link_to "Parent Companies", parent_companies_path
           %li= link_to @company.parent_company.name, parent_company_path(@company.parent_company)
         %li.active= @company.name
-      %h3= "#{@company.name} Details"
+      %h3= "Company Details - #{@company.name}"
   .row
     .col-md-6
       .panel.panel-default

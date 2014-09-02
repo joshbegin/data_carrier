@@ -3,6 +3,8 @@ DataCarrier::Application.routes.draw do
 
   resources :feeds
 
+  resources :feed_contacts
+
   resources :companies
 
   resources :parent_companies

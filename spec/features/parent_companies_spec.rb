@@ -24,14 +24,14 @@ describe "ParentCompanies", :type => :feature do
 
     it "should be able to edit Parent Companies" do
       visit edit_parent_company_path(@parent_company)
-      fill_in "Name",                             with: "Company DEF"
+      fill_in "parent_company_name",                             with: "Company DEF"
       click_button("Update Parent company")
       expect(page).to have_link("Company DEF")
     end
 
     it "should raise an error when editing with a missing Name" do
       visit edit_parent_company_path(@parent_company)
-      fill_in "Name",                             with: ""
+      fill_in "parent_company_name",                             with: ""
       click_button("Update Parent company")
       expect(page).to have_selector("li", "Name can't be blank")
     end
@@ -43,8 +43,8 @@ describe "ParentCompanies", :type => :feature do
 
     it "should be able to add new Parent Company" do
       visit new_parent_company_path
-      fill_in "Name",                             with: "Company ABC"
-      fill_in "Additional Name",                  with: "Addl Name"
+      fill_in "parent_company_name",                             with: "Company ABC"
+      fill_in "parent_company_additional_name",                  with: "Addl Name"
       click_button("Create Parent company")
       expect(page).to have_link("Company ABC")
     end
