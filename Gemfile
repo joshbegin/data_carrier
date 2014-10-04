@@ -44,6 +44,7 @@ group :development, :test do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
   gem 'spring'
+  gem 'rubocop'
 end
 group :test do
   gem 'shoulda-matchers'

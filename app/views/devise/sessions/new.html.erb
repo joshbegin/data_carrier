@@ -14,7 +14,7 @@
         <%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %>
       <% end -%>
       <%= f.label :password %>
-      <%= f.text_field :password, class: 'form-control', required: true %>
+      <%= f.password_field :password, class: 'form-control', required: true %>
     </div>
       <%= f.submit 'Log in', :class => 'button right' %>
       <% if devise_mapping.rememberable? -%>

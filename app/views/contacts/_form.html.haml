@@ -1,12 +1,15 @@
 = simple_form_for @contact, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
   = f.error_notification
   = render 'form_fields', f: f
-  %hr
-  %h4 Contacts
-  #contacts
-    = f.simple_fields_for :feed_contacts do |feed_contact|
-      = render 'feed_contact_fields', f: feed_contact
-    = link_to_add_association 'Add a Feed for this Contact', f, :feed_contacts
+  - if action_name == 'new' && current_user.email != 'user@example.com' # Added second condition temporarily for debugging
+    %em To assign a contact to a feed, click Create Contact, then click Edit and add a contact at bottom of the page
+  - else
+    %hr
+    %h4 Contacts
+    #contacts
+      = f.simple_fields_for :feed_contacts do |feed_contact|
+        = render 'feed_contact_fields', f: feed_contact
+      = link_to_add_association 'Add a Feed for this Contact', f, :feed_contacts
   %hr
   = f.button :submit, class: "btn-primary"
   = link_to "Cancel", :back, class: "btn btn-default"

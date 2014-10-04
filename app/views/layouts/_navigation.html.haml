@@ -1,5 +1,5 @@
 -# navigation styled for Bootstrap 3.0
-%nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top
+%nav.navbar.navbar-default.navbar-fixed-top
   .container
     .navbar-header
       %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
@@ -7,7 +7,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Data Carrier', root_path, class: 'navbar-brand'
+      = link_to image_tag('ip_logo.png', size: "200x31"), root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         = render 'layouts/navigation_links'
@@ -17,4 +17,4 @@
             %em.navbar-text.small= "Signed in as #{current_user.name}"
           - else
             %em.navbar-text.small= "Signed in"
-          %li= button_to 'Logout', destroy_user_session_path, :method=>'delete', class: "btn btn-default navbar-btn"
+          %li= button_to 'Logout', destroy_user_session_path, :method=>'delete', class: "btn btn-sm btn-default navbar-btn"

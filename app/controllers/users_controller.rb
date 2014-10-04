@@ -16,14 +16,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # def update
-  #   authorize @user
-  #   if @user.update_attributes(secure_params)
-  #     redirect_to users_path, :notice => "User updated."
-  #   else
-  #     redirect_to users_path, :alert => "Unable to update user."
-  #   end
-  # end
+  def update
+    authorize @user
+    if @user.update_attributes(secure_params)
+      redirect_to users_path, :notice => "User updated."
+    else
+      redirect_to users_path, :alert => "Unable to update user."
+    end
+  end
 
   def destroy
     user = User.find(params[:id])
@@ -38,9 +38,9 @@ class UsersController < ApplicationController
 
   private
 
-  # def secure_params
-  #   params.require(:user).permit(:role)
-  # end
+  def secure_params
+    params.require(:user).permit(:role)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user

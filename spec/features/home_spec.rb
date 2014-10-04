@@ -17,7 +17,7 @@ describe "Home page", :type => :feature do
     it "should be able to access Home page" do
       visit root_path
       expect(current_path).to eq(root_path)
-      expect(page).to have_text("Dashboard")
+      expect(page).to have_text("DataCarrier")
     end
 
     it "should display recently updated Feeds" do

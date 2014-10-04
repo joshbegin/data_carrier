@@ -11,10 +11,10 @@
 - else
   %li= link_to 'Sign up', new_user_registration_path
 - if user_signed_in?
-  %li= link_to 'Parent Companies', parent_companies_path
+  %li{:class => "#{'active' if current_page?(parent_companies_path)}"}= link_to 'Parent Companies', parent_companies_path
 - if user_signed_in?
-  %li= link_to 'Companies', companies_path
+  %li{:class => "#{'active' if current_page?(companies_path)}"}= link_to 'Companies', companies_path
 - if user_signed_in?
-  %li= link_to 'Feeds', feeds_path
+  %li{:class => "#{'active' if current_page?(feeds_path)}"}= link_to 'Feeds', feeds_path
 - if user_signed_in?
-  %li= link_to 'Contacts', contacts_path
+  %li{:class => "#{'active' if current_page?(contacts_path)}"}= link_to 'Contacts', contacts_path

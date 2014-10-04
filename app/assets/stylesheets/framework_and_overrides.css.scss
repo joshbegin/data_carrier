@@ -1,9 +1,12 @@
 // import the CSS framework
-$navbar-inverse-bg: #0073BB;
-$link-color: #0073BB;
-$panel-primary-heading-bg: #0073BB;
-// $btn-primary-bg: #FF7721;
-$btn-primary-bg: #FF7800;
+$navbar-inverse-bg: #56585a;
+$brand-primary: #248ec2;
+$brand-success: #1CCFA9;
+//$brand-warning: #CC3A4A;
+$brand-danger: #CC3A4A;
+$brand-info: #49C3FF;
+
+//$body-bg: #56585a;
 
 @import "bootswatch/paper/variables";
 @import "bootstrap";
